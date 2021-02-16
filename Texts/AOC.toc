@@ -1,0 +1,20 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ngerman}{}
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {1}Einleitung}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {2}Der Algorithmus}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.1}Die Kernidee}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {2.2}Die Anwendung}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3}Anwendungen im Aufbauspiel}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.1}Das Problem}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.2}Die Implementation}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {3.3}Vergleich}{1}{}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4}Fazit}{1}{}%
