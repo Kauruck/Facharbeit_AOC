@@ -1,7 +1,19 @@
 package com.kauruck.Graph;
 
 public class Edge {
-    private Node A;
-    private Node B;
+    private final Node<?> A;
+    private final Node<?> B;
 
+    public Edge(Node<?> A, Node<?> B){
+        this.A = A;
+        this.B = B;;
+    }
+
+    public Node<?> getA() {
+        return A;
+    }
+
+    public Node<?> getB() {
+        return B;
+    }
 }

@@ -1,18 +1,22 @@
 package com.kauruck.Objects;
 
+import java.awt.*;
+
 public class Building {
     private final ItemStack[] inputs;
     private final ItemStack[] outputs;
-    private final float processTime;
-    private float elapsedTime = 0f;
+    private final long processTime;
+    private long elapsedTime = 0;
+    private final Color color;
 
-    private Inventory inventory;
+    private final Inventory inventory;
 
-    public Building(ItemStack[] inputs, ItemStack[] outputs, float processTime, float capacity) {
+    public Building(ItemStack[] inputs, ItemStack[] outputs, long processTime, float capacity, Color color) {
         this.inputs = inputs;
         this.outputs = outputs;
         this.processTime = processTime;
         inventory = new Inventory(capacity);
+        this.color = color;
     }
 
     public ItemStack[] getInputs() {
@@ -27,7 +31,7 @@ public class Building {
         return processTime;
     }
 
-    public void update(float deltaTime){
+    public void update(long deltaTime){
         elapsedTime += deltaTime;
         if(elapsedTime > processTime){
             if(hasInputs() && canOutput()){
@@ -56,5 +60,9 @@ public class Building {
                 return false;
         }
         return true;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

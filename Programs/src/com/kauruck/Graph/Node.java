@@ -1,13 +1,32 @@
 package com.kauruck.Graph;
 
-public class Node {
+import com.kauruck.Objects.Building;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Node<T extends Building> {
 
     private int x;
     private int y;
+    private final T content;
 
-    public Node(int x, int y){
+    private final List<Edge> edges = new ArrayList<>();
+
+    public Node(int x, int y, T content){
         this.x = x;
         this.y = y;
+        this.content = content;
+    }
+
+    public void connectTo(Node<?> node){
+        Edge edge = new Edge(this,node);
+        this.edges.add(edge);
+        node.addEdge(edge);
+    }
+
+    private void addEdge(Edge edge){
+        edges.add(edge);
     }
 
     public int getX() {
@@ -26,5 +45,11 @@ public class Node {
         this.y = y;
     }
 
+    public T getContent() {
+        return content;
+    }
 
+    public List<Edge> getEdges() {
+        return edges;
+    }
 }
