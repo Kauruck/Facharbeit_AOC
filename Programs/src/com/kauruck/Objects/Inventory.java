@@ -36,7 +36,7 @@ public class Inventory {
                 getItemStackFromItem(what.getItem()).add(what);
             }
             else {
-                inventory.add(what);
+                inventory.add(new ItemStack(what));
             }
             return null;
         }else{
@@ -116,5 +116,17 @@ public class Inventory {
 
     public int getAmountOf(Item item){
         return getItemStackFromItem(item).getAmount();
+    }
+
+    public String toString(){
+        StringBuilder builder = new StringBuilder();
+        for(ItemStack current : inventory){
+            builder.append(current).append('\n');
+        }
+        return builder.toString();
+    }
+
+    public float getCapacity() {
+        return capacity;
     }
 }

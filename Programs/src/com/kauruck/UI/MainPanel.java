@@ -3,6 +3,7 @@ package com.kauruck.UI;
 import com.kauruck.Buildings;
 import com.kauruck.Graph.Node;
 import com.kauruck.Main;
+import com.kauruck.Objects.Building;
 import com.kauruck.Objects.World;
 
 import javax.swing.*;
@@ -31,7 +32,7 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         g.setColor(Color.BLACK);
         g.drawString(Main.graphicsThread.getFPS() + "", 20,20);
         g.setColor(Color.RED);
-        g.drawString(Main.worldThread.getFPS() + "", 20,40);
+        g.drawString(Main.worldThread.getDeltaTime() + "", 20,40);
         if(hover != null){
             g.setColor(Color.YELLOW);
             g.drawOval(hover.getX() - (Main.NODEHOVERR / 2), hover.getY() - (Main.NODEHOVERR / 2), Main.NODEHOVERR, Main.NODEHOVERR );
@@ -67,7 +68,7 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         if(SwingUtilities.isLeftMouseButton(e)){
             Node<?> target = World.currentWorld.getAt(e.getX(),e.getY(),Main.NODEHOVERR);
             if(target == null){
-                World.currentWorld.add(new Node<>(e.getX(),e.getY(), Buildings.LUMBERJACK));
+                World.currentWorld.add(new Node<>(e.getX(),e.getY(), new Building(Buildings.LUMBERJACK)));
             }
             else{
                 select = target;

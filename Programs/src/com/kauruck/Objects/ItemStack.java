@@ -13,16 +13,19 @@ public class ItemStack {
         this.item = item;
     }
 
-    public boolean add(ItemStack b){
-        if(!this.equals(b)) return false;
-        amount += b.getAmount();
-        return true;
+    public ItemStack(ItemStack org) {
+        this.amount = org.getAmount();
+        this.item = org.getItem();
     }
 
-    public boolean remove(ItemStack b){
-        if(!this.equals(b)) return false;
+    public void add(ItemStack b){
+        if(!this.equals(b)) return;
+        amount += b.getAmount();
+    }
+
+    public void remove(ItemStack b){
+        if(!this.equals(b)) return;
         amount -= b.getAmount();
-        return true;
     }
 
     @Override
@@ -55,5 +58,9 @@ public class ItemStack {
 
     public float calculateVolume(){
         return amount * item.getVolume();
+    }
+
+    public String toString(){
+        return amount + " " + item;
     }
 }

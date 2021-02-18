@@ -84,8 +84,15 @@ public class World {
         for(Node<?> current : currentWorld.nodes){
             g.setColor(current.getContent().getColor());
             g.drawOval(current.getX() - (Main.NODER/2), current.getY() - (Main.NODER/2), Main.NODER,Main.NODER);
+            drawString(g, current.getContent().getInventory().toString(), current.getX(), current.getY() + Main.NODER);
         }
         g.dispose();
         return out;
+    }
+
+    //From: https://stackoverflow.com/questions/4413132/problems-with-newline-in-graphics2d-drawstring[18.02.2021]
+    private static void drawString(Graphics g, String text, int x, int y) {
+        for (String line : text.split("\n"))
+            g.drawString(line, x, y += g.getFontMetrics().getHeight());
     }
 }

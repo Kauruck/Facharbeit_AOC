@@ -15,41 +15,13 @@ public class WorldThread implements Runnable{
 
     @Override
     public void run() {
-
+        long frameStartTime = 0;
         while (running){
-            long frameStartTime = System.nanoTime();
+            deltaTime = System.nanoTime() - frameStartTime;
+
             //Do world update
             World.update(deltaTime);
-            long currentTime = System.nanoTime();
-            long frameDeltaTime = currentTime - frameStartTime;
-            if(frameDeltaTime == 0){
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    stopped = true;
-                    return;
-                }
-            }else {
-                long waitTime = targetTime - frameDeltaTime;
-                if (waitTime > 0) {
-                    long delayMS = 0;
-                    if (waitTime > 999999) {
-                        delayMS = waitTime / 1000000;
-                        waitTime = waitTime % 1000000;
-                    }
-
-                    if (waitTime > 999999) {
-                        try {
-                            Thread.sleep(delayMS, (int) waitTime);
-                        } catch (InterruptedException e) {
-                            stopped = true;
-                            return;
-                        }
-                    }
-                }
-
-                deltaTime = System.nanoTime() - frameStartTime;
-            }
+            frameStartTime = System.nanoTime();
         }
         stopped = true;
     }
