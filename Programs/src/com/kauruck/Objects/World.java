@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.image.VolatileImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 //https://www.codota.com/code/java/classes/java.awt.GraphicsConfiguration[17.02.2021]
 
@@ -83,8 +84,12 @@ public class World {
 
         for(Node<?> current : currentWorld.nodes){
             g.setColor(current.getContent().getColor());
-            g.drawOval(current.getX() - (Main.NODER/2), current.getY() - (Main.NODER/2), Main.NODER,Main.NODER);
+            g.fillOval(current.getX() - (Main.NODER/2), current.getY() - (Main.NODER/2), Main.NODER,Main.NODER);
             drawString(g, current.getContent().getInventory().toString(), current.getX(), current.getY() + Main.NODER);
+            if(current.getContent() instanceof Warehouse) {
+                g.setColor(Color.BLACK);
+                drawString(g, mapToString(((Warehouse) current.getContent()).balance()), current.getX(), current.getY() - Main.NODER);
+            }
         }
         g.dispose();
         return out;
@@ -94,5 +99,14 @@ public class World {
     private static void drawString(Graphics g, String text, int x, int y) {
         for (String line : text.split("\n"))
             g.drawString(line, x, y += g.getFontMetrics().getHeight());
+    }
+
+    private static  <K,V>String mapToString(Map<K, V> map){
+        StringBuilder out = new StringBuilder();
+        for(K current : map.keySet()){
+            V value = map.get(current);
+            out.append(current.toString()).append(":").append(value.toString()).append('\n');
+        }
+        return out.toString();
     }
 }

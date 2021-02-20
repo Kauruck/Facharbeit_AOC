@@ -10,7 +10,7 @@ public class Building {
     private long elapsedTime = 0;
     private final Color color;
 
-    private final Inventory inventory;
+    protected final Inventory inventory;
 
     public Building(ItemStack[] inputs, ItemStack[] outputs, long processTime, float capacity, Color color) {
         this.inputs = inputs;

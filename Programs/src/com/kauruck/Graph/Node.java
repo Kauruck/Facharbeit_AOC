@@ -1,6 +1,7 @@
 package com.kauruck.Graph;
 
 import com.kauruck.Objects.Building;
+import com.kauruck.Objects.Warehouse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,9 @@ public class Node<T extends Building> {
         this.x = x;
         this.y = y;
         this.content = content;
+        if(content instanceof Warehouse){
+            ((Warehouse) content).setHolder((Node<Warehouse>) this);
+        }
     }
 
     public void connectTo(Node<?> node){

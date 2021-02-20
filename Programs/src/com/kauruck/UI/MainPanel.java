@@ -4,6 +4,7 @@ import com.kauruck.Buildings;
 import com.kauruck.Graph.Node;
 import com.kauruck.Main;
 import com.kauruck.Objects.Building;
+import com.kauruck.Objects.Warehouse;
 import com.kauruck.Objects.World;
 
 import javax.swing.*;
@@ -17,6 +18,8 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
     private Node<?> select = null;
     int dragX = -100;
     int dragY = -100;
+    boolean crtFlag = false;
+    boolean shiftFlag = false;
 
 
     public MainPanel(){
@@ -50,12 +53,18 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_CONTROL)
+            crtFlag = true;
+        if(e.getKeyCode() == KeyEvent.VK_SHIFT)
+            shiftFlag = true;
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_CONTROL)
+            crtFlag = false;
+        if(e.getKeyCode() == KeyEvent.VK_SHIFT)
+            shiftFlag = false;
     }
 
     @Override
@@ -68,7 +77,14 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
         if(SwingUtilities.isLeftMouseButton(e)){
             Node<?> target = World.currentWorld.getAt(e.getX(),e.getY(),Main.NODEHOVERR);
             if(target == null){
-                World.currentWorld.add(new Node<>(e.getX(),e.getY(), new Building(Buildings.LUMBERJACK)));
+                if(crtFlag) {
+                    World.currentWorld.add(new Node<>(e.getX(), e.getY(), new Warehouse(Buildings.WAREHOUSE)));
+                }else if(shiftFlag){
+                    World.currentWorld.add(new Node<>(e.getX(), e.getY(), new Building(Buildings.SAWMILL)));
+                }
+                else {
+                    World.currentWorld.add(new Node<>(e.getX(), e.getY(), new Building(Buildings.LUMBERJACK)));
+                }
             }
             else{
                 select = target;
