@@ -1,5 +1,6 @@
 package com.kauruck.UI;
 
+import com.kauruck.AS.Colony;
 import com.kauruck.Buildings;
 import com.kauruck.Graph.Node;
 import com.kauruck.Main;
@@ -57,6 +58,8 @@ public class MainPanel extends JPanel implements KeyListener, MouseListener, Mou
             crtFlag = true;
         if(e.getKeyCode() == KeyEvent.VK_SHIFT)
             shiftFlag = true;
+        if(e.getKeyCode() == KeyEvent.VK_A && Colony.instance == null)
+            new Colony(2);
     }
 
     @Override

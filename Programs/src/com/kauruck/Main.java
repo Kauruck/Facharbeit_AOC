@@ -29,7 +29,6 @@ public class Main {
         GT.start();
         WT.start();
         World.currentWorld = new World();
-        World.currentWorld.add(new Node<>(100,200,new Building(Buildings.LUMBERJACK)));
     }
 
     public static void exit(){

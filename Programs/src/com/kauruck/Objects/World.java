@@ -1,5 +1,7 @@
 package com.kauruck.Objects;
 
+import com.kauruck.AS.Ant;
+import com.kauruck.AS.Colony;
 import com.kauruck.Graph.Edge;
 import com.kauruck.Graph.Node;
 import com.kauruck.Main;
@@ -16,14 +18,28 @@ public class World {
 
     public static World currentWorld = null;
 
+    public static final long antMoveTime = (long)5e+9;
+
+    private long elapsedTime = 0;
+
     private List<Node<?>> nodes = new ArrayList<>();
+
+    public List<Node<?>> getNodes() {
+        return nodes;
+    }
 
     public static void update(long deltaTime){
         if(currentWorld == null)
             return;
 
+        currentWorld.elapsedTime += deltaTime;
         for(int i = 0; i < currentWorld.nodes.size(); i++){
             currentWorld.nodes.get(i).getContent().update(deltaTime);
+        }
+
+        if(currentWorld.elapsedTime >= antMoveTime && Colony.instance != null){
+            Colony.instance.update();
+            currentWorld.elapsedTime = 0;
         }
     }
 
@@ -79,7 +95,7 @@ public class World {
                 }
             }
 
-            g.drawOval(current.getX() - 10, current.getY() - 10, 20,20);
+            //g.drawOval(current.getX() - 10, current.getY() - 10, 20,20);
         }
 
         for(Node<?> current : currentWorld.nodes){
@@ -89,6 +105,13 @@ public class World {
             if(current.getContent() instanceof Warehouse) {
                 g.setColor(Color.BLACK);
                 drawString(g, mapToString(((Warehouse) current.getContent()).balance()), current.getX(), current.getY() - Main.NODER);
+            }
+        }
+        if(Colony.instance != null) {
+            g.setColor(Color.MAGENTA);
+            for (Ant currentAnt : Colony.instance.ants) {
+                Node<?> pos = currentAnt.getCurrentPosition();
+                g.drawOval(pos.getX() - (Main.NODEHOVERR / 2) - 3, pos.getY() - (Main.NODEHOVERR / 2) - 3, Main.NODEHOVERR + 6, Main.NODEHOVERR + 6);
             }
         }
         g.dispose();

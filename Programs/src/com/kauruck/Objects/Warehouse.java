@@ -25,10 +25,11 @@ public class Warehouse extends Building{
 
     @Override
     public void update(long deltaTime) {
-        for(Edge currentEdge : holder.getEdges()) {
+        for(int i = 0; i < holder.getEdges().size(); i++) {
+            Edge currentEdge = holder.getEdges().get(i);
             if (currentEdge.getA() == holder) {
                 Node<?> target = currentEdge.getB();
-                int nEdges = target.getEdges().size();
+                int nEdges = target.getEdges().size() > 0 ? target.getEdges().size() : 1;
                 for (ItemStack current : target.getContent().getOutputs()) {
                     ItemStack toGet = new ItemStack(current.getAmount()/nEdges, current.getItem());
                     if (target.getContent().getInventory().containsAtLeast(toGet)) {
@@ -37,7 +38,7 @@ public class Warehouse extends Building{
                 }
             }else{
                 Node<?> target = currentEdge.getA();
-                int nEdges = target.getEdges().size();
+                int nEdges = target.getEdges().size() > 0 ? target.getEdges().size() : 1;
                 for (ItemStack current : target.getContent().getOutputs()) {
                     ItemStack toGet = new ItemStack(current.getAmount()/nEdges, current.getItem());
                     if (target.getContent().getInventory().containsAtLeast(toGet)) {
@@ -46,10 +47,11 @@ public class Warehouse extends Building{
                 }
             }
         }
-        for(Edge currentEdge : holder.getEdges()) {
+        for(int i = 0; i < holder.getEdges().size(); i++) {
+            Edge currentEdge = holder.getEdges().get(i);
             if (currentEdge.getA() == holder) {
                 Node<?> target = currentEdge.getB();
-                int nEdges = target.getEdges().size();
+                int nEdges = target.getEdges().size() > 0 ? target.getEdges().size() : 1;
                 for (ItemStack current : target.getContent().getInputs()) {
                     ItemStack toDeliver = new ItemStack(current.getAmount()/nEdges, current.getItem());
                     if (this.getInventory().containsAtLeast(toDeliver)) {
@@ -58,7 +60,7 @@ public class Warehouse extends Building{
                 }
             }else{
                 Node<?> target = currentEdge.getA();
-                int nEdges = target.getEdges().size();
+                int nEdges = target.getEdges().size() > 0 ? target.getEdges().size() : 1;
                 for (ItemStack current : target.getContent().getInputs()) {
                     ItemStack toDeliver = new ItemStack(current.getAmount()/nEdges, current.getItem());
                     if (this.getInventory().containsAtLeast(toDeliver)) {
