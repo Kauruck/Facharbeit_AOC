@@ -1,11 +1,15 @@
 \documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{url}
 \usepackage{breakurl}
 \usepackage[breaklinks]{hyperref}
 \def\UrlBreaks{\do\/\do-}
 \usepackage[backend=biber]{biblatex}
 \usepackage[ngerman]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage{svg}
+\usepackage{wrapfig}
+\usepackage{float}
 
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
@@ -17,14 +21,28 @@
 \tableofcontents
 \pagebreak
 
-\section{Einleitung}
+\section{Einleitung} \label{Einleitung}
 Beim der Entwickelung von Algorithmen stellt sich oft die Frage nach der besten Lösung. Es gibt tausende von Möglichkeiten ein gegebenes Problem anzugehen. Eine der besten Inspirationsquellen ist oft die Natur selbst, mit ihren erprobten Methoden liefert sie oft Vorbilder. Eins dieser Vorbilder sind Ameisenkolonien, sie liefern Ideen für das Kommunizieren, für das konstruieren und eben auch für das Wegfinden.\\\\
-Ant Colony Optimization nimmt ein Problem als Abhängigkeitsdiagramm und findet mögliche Lösungen zu einem Problem. Hierbei hat die Futtersuche der Ameisen als Inspiration gedient, so hinterlassen Ameisen auf der Suche nach Nahrung Pheromonen, denen dann wiederum anderen Ameisen folgen. Dadurch können durch relative Simple Abfolgen komplexe Ziele erreicht werden.\\\\
+Ant Colony Optimization nimmt ein Problem als Graphen und findet mögliche Lösungen zu einem Problem. Hierbei hat die Futtersuche der Ameisen als Inspiration gedient, so hinterlassen Ameisen auf der Suche nach Nahrung Pheromonen, denen dann wiederum anderen Ameisen folgen. Dadurch können durch relative Simple Abfolgen komplexe Ziele erreicht werden.\\\\
 Aber warum jetzt Wegfindung in Aufbausimulationen? In Aufbausimulation müssen oft Wege zwischen verschiedenen Punkten gefunden werden. Daher bietet sich hier ACO an. Besonders oft werden Waren zwischen unterschiedlichen Produktionsstätten transportiert werden und dann ist der Träger nichts anderes als die Ameise, der Startpunkt der Ameisenbau und das Ziel die Nahrung. Aufgrund der Iterativen Natur ACO bleiben meine Routen nicht statisch, aber erprobte Wege bleiben erhalten.
 \section{Der Algorithmus}
-
+\subsection{Graphen}
+\begin{wrapfigure}[10]{r}{0.55\textwidth}
+\begin{center}
+\includeinkscape[width=0.5\textwidth ,height=0.5\textwidth]{Extras/Abb1.pdf_tex}
+\end{center}
+\caption{Einfacher Graph}
+\label{fig:1}
+\end{wrapfigure}
+Als Graphen versteht man eine Anzahl an Knoten(V\textsubscript{x}) und Kanten(E\textsubscript{0}). Eine Kante zwischen zwei Knoten wird als (V\textsubscript{a},V\textsubscript{b}) bezeichnet, wobei V\textsubscript{a} und V\textsubscript{b} die beiden verbundenen Knoten sind(Abbildung \ref{fig:1}). Werden den Kanten eine Richtung bzw. beide zugewiesen so spricht man von einem gerichtetem Graph. Weiterhin kann den Kante oder den Knoten ein Gewicht, also den Kostenmultiplikator für die jeweilige Kante bzw. Knoten. Bei ersterem spricht man von einem kantengewichteten Graph, bei letzterem von einem knotengewichtetem Graph.\\\\
+Zwei Knoten gelten als benachbart wenn es (V\textsubscript{a},V\textsubscript{b}) oder (V\textsubscript{b},V\textsubscript{a}) gibt.
 \subsection{Die Kernidee}
-
+Die Ant Colony Optimization besteht grob aus zwei Bestandteilen, der Wahrscheinlichkeit für eine gegebene Kante und der Pheromonenupdateregel.
+\subsubsection{Wahrscheinlichkeit für eine Kante}
+Die Wahrscheinlichkeit für eine Kante gibt an wie hoch die Wahrscheinlichkeit (p) ist, dass eine gegeben Ameise (k) die Kante (V\textsubscript{x},V\textsubscript{y}), wobei V\textsubscript{x} die momentane Position ist. Sie setzt sich aus der Menge an Pheromonen auf der Kante ($\tau$) und der Effektivität der Kante ($\eta$) zusammen $\ P ^{ k }_{ xy }=\left(  \tau ^{ \alpha }_{ xy } \right)*\left(  \eta ^{ \beta }_{ xy } \right)$. 
+Der Wert wird dann in einen prozentualen Anteil umgerechnet, indem $P$ durch die Summen aller möglichen Kanten mit (V\textsubscript{x},V\textsubscript{z}) mit V\textsubscript{z} als $V_z \in Nachbarn_{x}$.\\\\
+Daher ist $p^{k}_{xy}=\frac{P}{\sum{z\in Nachbern_x}{}{P^{k }_{xz}}} $
+\subsubsection{Die Pheromonenupdateregel}
 \subsection{Die Anwendung}
 
 \section{Anwendungen im Aufbauspiel}
