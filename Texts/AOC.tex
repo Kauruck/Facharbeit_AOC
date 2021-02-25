@@ -1,16 +1,26 @@
 \documentclass[12pt]{article}
+\usepackage{url}
+\usepackage{breakurl}
+\usepackage[breaklinks]{hyperref}
+\def\UrlBreaks{\do\/\do-}
 \usepackage[backend=biber]{biblatex}
 \usepackage[ngerman]{babel}
-\usepackage[ansinew]{inputenc}
+\usepackage[utf8]{inputenc}
+
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
  
 \addbibresource{Extras/sources.bib}
 
 \begin{document}
 
 \tableofcontents
+\pagebreak
 
 \section{Einleitung}
-
+Beim der Entwickelung von Algorithmen stellt sich oft die Frage nach der besten Lösung. Es gibt tausende von Möglichkeiten ein gegebenes Problem anzugehen. Eine der besten Inspirationsquellen ist oft die Natur selbst, mit ihren erprobten Methoden liefert sie oft Vorbilder. Eins dieser Vorbilder sind Ameisenkolonien, sie liefern Ideen für das Kommunizieren, für das konstruieren und eben auch für das Wegfinden.\\\\
+Ant Colony Optimization nimmt ein Problem als Abhängigkeitsdiagramm und findet mögliche Lösungen zu einem Problem. Hierbei hat die Futtersuche der Ameisen als Inspiration gedient, so hinterlassen Ameisen auf der Suche nach Nahrung Pheromonen, denen dann wiederum anderen Ameisen folgen. Dadurch können durch relative Simple Abfolgen komplexe Ziele erreicht werden.\\\\
+Aber warum jetzt Wegfindung in Aufbausimulationen? In Aufbausimulation müssen oft Wege zwischen verschiedenen Punkten gefunden werden. Daher bietet sich hier ACO an. Besonders oft werden Waren zwischen unterschiedlichen Produktionsstätten transportiert werden und dann ist der Träger nichts anderes als die Ameise, der Startpunkt der Ameisenbau und das Ziel die Nahrung. Aufgrund der Iterativen Natur ACO bleiben meine Routen nicht statisch, aber erprobte Wege bleiben erhalten.
 \section{Der Algorithmus}
 
 \subsection{Die Kernidee}

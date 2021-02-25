@@ -2,6 +2,7 @@ package com.kauruck.AS;
 
 import com.kauruck.Graph.Edge;
 import com.kauruck.Graph.Node;
+import com.kauruck.Items;
 import com.kauruck.Objects.World;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Colony {
         Random r = new Random();
         for(int i = 0; i < nAnts; i++){
             int rNode = r.nextInt(World.currentWorld.getNodes().size());
-            Ant current = new Ant(World.currentWorld.getNodes().get(rNode));
+            Ant current = new Ant(World.currentWorld.getNodes().get(rNode), Items.LOG);
             ants.add(current);
         }
     }
