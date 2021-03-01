@@ -1,6 +1,6 @@
 %% Creator: Inkscape 1.0 (4035a4fb49, 2020-05-01), www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'Abb1.pdf' (pdf, eps, ps)
+%% Accompanies image file 'Abb2.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{785.08365948bp}%
+    \setlength{\unitlength}{598.51134354bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,12 +50,19 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.43238357)%
+  \begin{picture}(1,0.78556831)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{Abb1.pdf}}%
-    \put(0.32515353,0.06634145){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}V\textsubscript{b}\end{tabular}}}}%
-    \put(0.04334603,0.36016204){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}V\textsubscript{a}\end{tabular}}}}%
-    \put(0.22580774,0.24228126){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}(V\textsubscript{a},V\textsubscript{b})\end{tabular}}}}%
+    \put(0.07763448,0.49494651){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_a$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Abb2.pdf}}%
+    \put(0.33628622,0.25192183){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_e$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Abb2.pdf}}%
+    \put(0.4589119,0.65291674){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_b$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Abb2.pdf}}%
+    \put(0.84737572,0.67976908){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_c$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Abb2.pdf}}%
+    \put(0.83394956,0.08364719){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_d$\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Abb2.pdf}}%
+    \put(0.52425259,0.41572109){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$V_f$\end{tabular}}}}%
   \end{picture}%
 \endgroup%
