@@ -42,19 +42,17 @@ public class Ant {
         return 1f/d;
     }
 
-    private float otherEdges(Edge notToInclude){
+    private float otherEdges(){
         float out = 0f;
         for(Edge current : currentPosition.getEdges()){
-            if(current != notToInclude){
-                out += (current.getAttractiveness()*alpha)*(calcEfficiency(current)*beta);
-            }
+       		out += (current.getAttractiveness()*alpha)*(calcEfficiency(current)*beta);
         }
 
         return out;
     }
 
     private float probability(Edge edge){
-        return ((edge.getAttractiveness()*alpha)*(calcEfficiency(edge) * beta))/(otherEdges(edge));
+        return ((edge.getAttractiveness()*alpha)*(calcEfficiency(edge) * beta))/(otherEdges());
     }
 
     public Edge findWay(){
