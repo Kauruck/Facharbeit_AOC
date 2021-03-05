@@ -12,20 +12,27 @@
 \usepackage{float}
 \usepackage{wrapfig}
 \usepackage[german,onelanguage]{algorithm2e}
+\usepackage{mathptmx}
 
- \SetKwProg{Fn}{Funktion}{ist}{Ende}
+\SetKwProg{Fn}{Funktion}{ ist}{Ende}
 
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
  
 \addbibresource{Extras/sources.bib}
 
-\begin{document}
+\pagestyle{headings}
 
+\pagenumbering{roman}
+
+\begin{document}
+\thispagestyle{empty}
 \tableofcontents
 \pagebreak
 
+
 \section{Einleitung} \label{Einleitung}
+\pagenumbering{arabic}
 Beim der Entwickelung von Algorithmen stellt sich oft die Frage nach der besten Lösung. Es gibt tausende von Möglichkeiten ein gegebenes Problem anzugehen. Eine der besten Inspirationsquellen ist oft die Natur selbst, mit ihren erprobten Methoden liefert sie oft Vorbilder. Eins dieser Vorbilder sind Ameisenkolonien, sie liefern Ideen für das Kommunizieren, für das konstruieren und eben auch für das Wegfinden.\\\\
 Ant Colony Optimization (auch ACO) nimmt ein Problem als Graphen und findet mögliche Lösungen zu einem Problem. Hierbei hat die Futtersuche der Ameisen als Inspiration gedient, so hinterlassen Ameisen auf der Suche nach Nahrung Pheromonen, denen dann wiederum anderen Ameisen folgen. Dadurch können durch relative Simple Abfolgen komplexe Ziele erreicht werden.\\\\
 Aber warum jetzt Wegfindung in Aufbausimulationen? In Aufbausimulation müssen oft Wege zwischen verschiedenen Punkten gefunden werden. Daher bietet sich hier ACO an. Besonders oft werden Waren zwischen unterschiedlichen Produktionsstätten transportiert werden und dann ist der Träger nichts anderes als die Ameise, der Startpunkt der Ameisenbau und das Ziel die Nahrung. Aufgrund der Iterativen Natur ACO bleiben meine Routen nicht statisch, aber erprobte Wege bleiben erhalten.
@@ -47,11 +54,11 @@ Zwei Knoten gelten als benachbart wenn es (V\textsubscript{a},V\textsubscript{b}
 \subsection{Die Kernidee}\label{Kernidee}
 "'\textit{In ACO, a number of artificial ants build solutions to an optimization problem and exchange information on their quality via a communication scheme that is reminiscent of the one adopted by real ants.}"\cite{ dorigo2007ant}\footnote{DE: Bei dem Ant Colony Optimization Algorithmus, entwickeln künstliche Ameisen eine Lösung zu einem Optimierungsproblem und kommunizieren die Qualität ihrer Lösung via eines Verfahrens, welches von Ameisen adaptiert wurde.  }. 
 Die Ant Colony Optimization besteht grob aus zwei Bestandteilen, der Wahrscheinlichkeit für eine gegebene Kante und der Pheromonenupdateregel. Die hier vorgestellten Formel entsprechen der des Ant Systems (AS) (s. \ref{Geschichte}).
-\subsubsection{Wahrscheinlichkeit für eine Kante}
+\subsubsection{Wahrscheinlichkeit für eine Kante}\label{P/p}
 Die Wahrscheinlichkeit für eine Kante gibt an wie hoch die Wahrscheinlichkeit (p) ist, dass eine gegeben Ameise ($k$) die Kante (V\textsubscript{x},V\textsubscript{y}), wobei V\textsubscript{x} die momentane Position ist. Sie setzt sich aus der Menge an Pheromonen auf der Kante ($\tau$) und der Effektivität der Kante ($\eta$) zusammen \[ P ^{ k }_{ xy }=\left(  \tau ^{ \alpha }_{ xy } \right)*\left(  \eta ^{ \beta }_{ xy } \right)\]. 
-Der Wert wird dann in einen prozentualen Anteil umgerechnet, indem $P^k_xy$ durch die Summen der Wahrscheinlichkeiten aller möglichen Kanten (V\textsubscript{x},V\textsubscript{z}) mit V\textsubscript{z} als $V_z \in Nachbarn_{x}$.Daher ist: \[p^{k}_{xy}=\frac{P}{\sum_{z\in Nachbern_x}{}P^{k }_{xz}} \]
+Der Wert wird dann in einen die relative Wahrscheinlichkeit umgerechnet, indem $P^k_xy$ durch die Summen der absoluten Wahrscheinlichkeiten aller möglichen Kanten (V\textsubscript{x},V\textsubscript{z}) mit V\textsubscript{z} als $V_z \in Nachbarn_{x}$.Daher ist: \[p^{k}_{xy}=\frac{P}{\sum_{z\in Nachbern_x}{}P^{k }_{xz}} \]
 \subsubsection{Die Pheromonenupdateregel}
-Der zweite Teil ist die Pheromonenupdateregel. Sie ist für das Aktualisieren aller Kanten zuständig. Daher hat diese Regel einen großen Einfluss auf das Verhalten der Ameisen.Die einfachste Regel besagt: \[tau_{xy}= (1-\rho)*\tau_{xy}+\sum_{k}^{m}{ \Delta\tau^k_{xy}} \]
+Der zweite Teil ist die Pheromonenupdateregel. Sie ist für das Aktualisieren aller Kanten zuständig. Daher hat diese Regel einen großen Einfluss auf das Verhalten der Ameisen.Die einfachste Regel besagt: \[\tau_{xy}= (1-\rho)*\tau_{xy}+\sum_{k}^{m}{ \Delta\tau^k_{xy}} \]
 Wobei $\rho$ angibt wie viel von dem Duftstoff verdampft, $m$ die Anzahl an Ameisen ist und $\Delta\tau^k_{xy}$ die Menge an Pheromonen ist, die die Ameise $k$ auf der Kante (V\textsubscript{x},V\textsubscript{y}) hinterlassen hat. Dementsprechend ergibt sich $\Delta\tau^k_{xy}$ wie folgt wenn die Ameise $k$ über die Kante gegangen ist:\[\Delta\tau^k_{xy}=Q/L_k\] Wenn die Ameise nicht über die Kante gegangen ist, dann ist: \[\Delta\tau^k_{xy}=0\]
 \subsection{Das travelling salesman problem}\label{TSP}
 Das travelling salesman problem (in deutsch: Reisehändlerproblem) ist ein relativ bekanntes Problem 
@@ -77,34 +84,91 @@ Als Ausgangslage dient das bauen von Produktionsketten. Da es unterschiedlichste
 Daher ergeben sich Zwei notwendige Gebäude. Ersteres ist der Holzfäller der in einem festen Zeitintervall von 2t\footnote{t: Beliebige Zeit} 1 Holzstamm\footnote{Platz eingenommen: 2 VE} produziert, ohne dabei benötigte Ressourcen\footnote{Das fällen von Bäumen und deren Existenz werden zur Vereinfachung weggelassen} zu haben. Die Lagerkapazitäten des Holzfällers sind 1L\footnote{L: Volumen des Lagers} Zweiteers Gebäude ist das Sägewerk das alle 1t\footnotemark[3] aus einem Holzstamm ein Brett\footnote{Platz eingenommen: 1 VE} produziert. Das Sägewerk hat eine Lagerkapazität von 2L\footnotemark[6]. 
 Als drittes Gebäude wird noch das Lagerhaus hinzugefügt, es dient nur dazu die produzierten Waren zu sammeln und die benötigten auf die Verbraucher zu verteilen. Weiterhin können die Lagerhäuser auch als Zwischenlager verwendet werden, um überschüssige Waren zu Lagern. Weiterhin dienen sie den Ameisen als Ziel und Ausgangspunkt ihrer Reise.\\\\
 Die unterschiedlichen Gebäude werden durch Straßen miteinander verbunden.
-\subsection{Die ACO Regeln}
+\subsection{Die ACO Regeln}\label{Regeln}
 Damit der Standard Ant System Algorithmus für Aufbauspiele funktioniert, müssen gewisse Regeln erweitert werden. \\\\
 Die Regel für die Effektivität $\tau$ besteht nicht nur aus der Distanz, damit die Ameisen nicht die Waren über die ganze Karte tragen, sonder auch aus der Bilanz des Zieles. Die Bilanz beinhaltet wie viel Ressourcen in einer Zeiteinheit t\footnotemark[3] verbraucht (in negativ) und produziert werden (in positiv). Diese Regel soll verhindern, dass die Ameisen nicht ihre Ware zu einem Lagerhaus bringen, das einen Überschuss an dieser Ware hat.
 
 \subsection{Die Implementation}
 Nachdem die Grundlage für das Spiel gesetzt wurde, soll nun die einzelnen Formeln und Abläufe in Pseudocode übersetzt und erläutert werden. \\\\
-Ein zentraler Teil des Algorithmus ist die Berechnung der absoluten Wahrscheinlichkeit $P$. 
-\begin{algorithm}
+Ein zentraler Teil des Algorithmus ist die Berechnung der absoluten Wahrscheinlichkeit $P$. \\\\
+\begin{algorithm}[H]
  \caption{Wahrscheinlichkeit P}
  \DontPrintSemicolon
 
  \Fn{berechneP(kante : Kante) : Dezimalzahl}{
- Zahl P = (kante.Attraktivität * $\alpha$ ) * (effizienz(kante) * $\beta$)\;
+ P = (kante.Attraktivität * $\alpha$ ) * (effizienz(kante) * $\beta$) : Dezimalzahl\;
  gib P zurück\;
  }
 \end{algorithm}
-Die Funktion Effizienz(kante) verläuft wie folgt:
-\begin{algorithm}
+Diese Funktion ist eine programmatische Umsetzung der unter \ref{P/p} beschrieben Formel für P.
+Die Funktion Effizienz(kante), den Regeln aus \ref{Regeln}  folgend, verläuft wie folgt:\\\\
+\begin{algorithm}[H]
 \caption{Effizienz}
 \DontPrintSemicolon
 \Fn{effizienz(kante : Kante) : Dezimalzahl}{
-Knoten ziel\;
+ziel = null : Knoten\;
 \eIf{kante.A gleich momentanePosition}{
-	setze ziel gleich kante.B\;
+	ziel = kante.B\;
 }{
-setze ziel gleich kante.A\;
+ziel = kante.A\;
 }
+d = 1 : Dezimalzahl\;
+d = $\sqrt[2]{(kante.A.x - kante.B.x)^2 + (kante.A.y - kante.B.y)^2}$\;
+\uIf{ziel.gebäude ist Variante von Lagerhaus und ziel.gebäude.balance enthält transportierteRessource}{
+d = d + $\theta$ * ziel.gebäude.balance(transportierteRessource)\;
 }
+gib $\frac{1}{d}$ zurück\;
+}
+\end{algorithm}
+Im ersten Teil der Funktion wird entschieden welche der beiden Knoten der Kante genommen betrachtet werden soll. Da nicht zu der eigenen Position gegangen werden soll, müssen daher die Werter des anderen Knotens verwendet werden. Als nächster Schritt ist dann die Distanz zwischen den beiden Knoten zu berechnen. Sollte dann das Gebäude an dem Zielknoten ein Lagerhaus sein, so wird der Verbrauch bzw. die Produktion der transportierten Ressource auf die Distanz ab bzw. aufgeschlagen. 
+Der Rückgabewert entspricht 1/d, damit größere Strecken unattraktiver sind.\\\\
+Im Nächsten Schritt muss den die relative Wahrscheinlichkeit p berechnet werden. Dazu wird die absolute Wahrscheinlichkeit P durch die Summe aller Wahrscheinlichkeiten geteilt.\\\\
+\begin{algorithm}[H]
+\caption{Summe der Wahrscheinlichkeiten}
+\DontPrintSemicolon
+\Fn{summeWahrscheinlichkeiten() : Dezimalzahl}{
+ergebnis = 0 : Dezimalzahl\;
+\ForEach{momentan : Kante in momentanePosition.Kanten}{
+ergebnis = ergebnis + berechneP(momentan)\;
+}
+gib ergebnis zurück\;
+}
+\end{algorithm}
+Dieser Algorithmus ist das Iterative aufrufen und addieren der Ergebnisse der Funktion P, für jede Kante die von der momentanen Position ausgehen.\\\\
+Daher Ergibt sich die relative Wahrscheinlichkeit p wie folgt:\\\\
+\begin{algorithm}[H]
+\caption{Wahrscheinlichkeit p}
+\DontPrintSemicolon
+\Fn{berechnep(kante : Kante) : Dezimalzahl}{
+gib $\frac{berechneP(kante)}{summeWahrscheinlichkeiten()}$ zurück\;
+}
+\end{algorithm}
+Damit nun eine Kante selektiert werden kann, muss zuerst jeder vom momentanen Knoten ausgehenden Kante eine Wahrscheinlichkeit zugewiesen werden und dann eine ausgewählt werden. Da p eine relative Wahrscheinlichkeit ist, kann ein Wert zwischen 0 und 1 (0\% und 100\%)bestimmt werden und dann alle Wahrscheinlichkeit aufaddiert werden, bis dieser Schwellwert überschritten ist. Der Pseudocode sieht daher so aus:\\\\
+\begin{algorithm}[H]
+\caption{Selektion einer Kante}
+\DontPrintSemicolon
+\Fn{selektiereKante() : Kante}{
+wahrscheinlichkeiten = Array mit Länge von momentanePosition.Kanten : Dezimalzahlarray\;
+index = 0 : Zahl\;
+\ForEach{momentan : Kante in momentanePosition.Kanten}{
+wahrscheinlichkeiten[index] = berechnep(momentan)\;
+index = index + 1\;
+}
+
+schranke = Zufallszahl zwischen 0 und 1 : Dezimalzahl\;
+summe = 0 : Dezimalzahl\;
+index = 0\;
+\ForEach{momentan : Dezimalzahl in wahrscheinlichkeit}{
+summe = summe + momentan\;
+\If{summe ist größer als schranke}{
+	gib momentanePosition.Kanten[index] zurück\;
+}
+index = index + 1\;
+}
+gib null zurück\;
+}
+
+Nachdem die Wegfindung 
 \end{algorithm}
 \section{Fazit}
 
