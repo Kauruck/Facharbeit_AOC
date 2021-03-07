@@ -13,15 +13,20 @@
 \usepackage{wrapfig}
 \usepackage[german,onelanguage]{algorithm2e}
 \usepackage{mathptmx}
+\usepackage{fancyhdr}
+
 
 \SetKwProg{Fn}{Funktion}{ ist}{Ende}
 
 \setcounter{biburllcpenalty}{7000}
 \setcounter{biburlucpenalty}{8000}
+
+\pagestyle{fancy}
+
  
 \addbibresource{Extras/sources.bib}
 
-\pagestyle{headings}
+
 
 \pagenumbering{roman}
 
@@ -33,15 +38,15 @@
 
 \section{Einleitung} \label{Einleitung}
 \pagenumbering{arabic}
-Beim der Entwickelung von Algorithmen stellt sich oft die Frage nach der besten Lösung. Es gibt tausende von Möglichkeiten ein gegebenes Problem anzugehen. Eine der besten Inspirationsquellen ist oft die Natur selbst, mit ihren erprobten Methoden liefert sie oft Vorbilder. Eins dieser Vorbilder sind Ameisenkolonien, sie liefern Ideen für das Kommunizieren, für das konstruieren und eben auch für das Wegfinden.\\\\
-Ant Colony Optimization (auch ACO) nimmt ein Problem als Graphen und findet mögliche Lösungen zu einem Problem. Hierbei hat die Futtersuche der Ameisen als Inspiration gedient, so hinterlassen Ameisen auf der Suche nach Nahrung Pheromonen, denen dann wiederum anderen Ameisen folgen. Dadurch können durch relative Simple Abfolgen komplexe Ziele erreicht werden.\\\\
-Aber warum jetzt Wegfindung in Aufbausimulationen? In Aufbausimulation müssen oft Wege zwischen verschiedenen Punkten gefunden werden. Daher bietet sich hier ACO an. Besonders oft werden Waren zwischen unterschiedlichen Produktionsstätten transportiert werden und dann ist der Träger nichts anderes als die Ameise, der Startpunkt der Ameisenbau und das Ziel die Nahrung. Aufgrund der Iterativen Natur ACO bleiben meine Routen nicht statisch, aber erprobte Wege bleiben erhalten.
+Bei der Entwicklung von Algorithmen stellt sich oft die Frage nach der besten Lösung. Es gibt tausende von Möglichkeiten ein gegebenes Problem anzugehen. Eine der besten Inspirationsquellen ist die Natur selbst, mit ihren erprobten Methoden liefert sie oft Vorbilder. Eins dieser Vorbilder sind Ameisenkolonien, sie gegen Ideen für das Kommunizieren, für das Konstruieren und eben auch für das Wegfinden.\\\\
+Ant Colony Optimization (auch ACO) nimmt ein Problem als Graphen und findet mögliche Lösungen zu eben diesem. Hierbei hat die Futtersuche der Ameisen als Inspiration gedient, so hinterlassen diese auf der Suche nach Nahrung Pheromone, denen dann wiederum anderen Ameisen folgen. Dadurch können  relative Simple Abfolgen komplexe Ziele erreichen.\\\\
+Aber warum jetzt Wegfindung in Aufbausimulationen? In Aufbausimulation müssen oft Wege zwischen verschiedenen Punkten gefunden werden. Daher bietet sich hier ACO an. Besonders oft werden Waren zwischen unterschiedlichen Produktionsstätten transportiert und dann ist der Träger nichts anderes als die Ameise, der Startpunkt der Ameisenbau und das Ziel die Nahrung. Aufgrund der Iterativen Natur der ACO bleiben meine Routen nicht statisch, aber erprobte Wege bleiben erhalten.
 \section{Der Algorithmus}
 \subsection{Die Geschichte}\label{Geschichte}
 Der Ant Colony Optimization Algorithmus wurde erstmalig von Marco Dorigo in seiner Doktorarbeit 1992 vorgestellt. Diese Variante ist als das Ant System (AS) bekannt. Seitdem gab es einige Weiterentwicklungen des ursprünglichen Algorithmus, wie zum Beispiel das Ant Colony System oder das Elitist Ant System.
 Ursprünglich wurde das Ant System anhand des travelling salesman problem (TSP) (s. \ref{TSP}) vorgestellt.
 \subsection{Algorithmus}
-Eine Algorithmus ist eine"\textit{ Rechenvorgang nach einem bestimmten [sich wiederholenden] Schema}"\cite{duden_algo}. Daher werden im den folgenden Abschnitten die benötigten Abläufe für ACO definiert.
+Ein Algorithmus ist ein"\textit{ Rechenvorgang nach einem bestimmten [sich wiederholenden] Schema}"\cite{duden_algo}. Daher werden in den folgenden Abschnitten die benötigten Abläufe für ACO definiert.
 \subsection{Graphen}
 \begin{wrapfigure}{r}{0.55\textwidth}
 \centering
@@ -49,23 +54,23 @@ Eine Algorithmus ist eine"\textit{ Rechenvorgang nach einem bestimmten [sich wie
 \caption{Einfacher Graph}
 \label{fig:1}
 \end{wrapfigure}
-Als Graphen versteht man eine Anzahl an Knoten(V\textsubscript{x}) und Kanten(E\textsubscript{0}). Eine Kante zwischen zwei Knoten wird als (V\textsubscript{a},V\textsubscript{b}) bezeichnet, wobei V\textsubscript{a} und V\textsubscript{b} die beiden verbundenen Knoten sind(Abbildung \ref{fig:1}). Werden den Kanten eine Richtung bzw. beide zugewiesen so spricht man von einem gerichtetem Graph. Weiterhin kann den Kante oder den Knoten ein Gewicht, also den Kostenmultiplikator für die jeweilige Kante bzw. Knoten. Bei ersterem spricht man von einem kantengewichteten Graph, bei letzterem von einem knotengewichtetem Graph.\\\\
-Zwei Knoten gelten als benachbart wenn es (V\textsubscript{a},V\textsubscript{b}) oder (V\textsubscript{b},V\textsubscript{a}) gibt.
+Als Graphen versteht man eine Anzahl an Knoten(V\textsubscript{x}) und Kanten(E\textsubscript{0}). Eine Kante zwischen zwei Knoten wird als (V\textsubscript{a},V\textsubscript{b}) bezeichnet, wobei V\textsubscript{a} und V\textsubscript{b} die beiden verbundenen Knoten sind (Abbildung \ref{fig:1}). Werden den Kanten eine Richtung bzw. beide zugewiesen so spricht man von einem gerichteten Graphen. Weiterhin kann den Kanten oder den Knoten ein Gewicht, also ein Kostenmultiplikator für die jeweilige Kante bzw. Knoten zugewiesen werden. Bei ersterem spricht man von einem kantengewichteten Graphen, bei letzterem von einem knotengewichtetem Graphen.\\\\
+Zwei Knoten gelten als benachbart, wenn es (V\textsubscript{a},V\textsubscript{b}) oder (V\textsubscript{b},V\textsubscript{a}) gibt.
 \subsection{Die Kernidee}\label{Kernidee}
 "'\textit{In ACO, a number of artificial ants build solutions to an optimization problem and exchange information on their quality via a communication scheme that is reminiscent of the one adopted by real ants.}"\cite{ dorigo2007ant}\footnote{DE: Bei dem Ant Colony Optimization Algorithmus, entwickeln künstliche Ameisen eine Lösung zu einem Optimierungsproblem und kommunizieren die Qualität ihrer Lösung via eines Verfahrens, welches von Ameisen adaptiert wurde.  }. 
-Die Ant Colony Optimization besteht grob aus zwei Bestandteilen, der Wahrscheinlichkeit für eine gegebene Kante und der Pheromonenupdateregel. Die hier vorgestellten Formel entsprechen der des Ant Systems (AS) (s. \ref{Geschichte}).
+Die Ant Colony Optimization besteht grob aus zwei Bestandteilen, der Wahrscheinlichkeit für eine gegebene Kante und der Pheromonenupdateregel. Die hier vorgestellten Formeln entsprechen der des Ant Systems (AS) (s. \ref{Geschichte}).
 \subsubsection{Wahrscheinlichkeit für eine Kante}\label{P/p}
-Die Wahrscheinlichkeit für eine Kante gibt an wie hoch die Wahrscheinlichkeit (p) ist, dass eine gegeben Ameise ($k$) die Kante (V\textsubscript{x},V\textsubscript{y}), wobei V\textsubscript{x} die momentane Position ist. Sie setzt sich aus der Menge an Pheromonen auf der Kante ($\tau$) und der Effektivität der Kante ($\eta$) zusammen \[ P ^{ k }_{ xy }=\left(  \tau ^{ \alpha }_{ xy } \right)*\left(  \eta ^{ \beta }_{ xy } \right)\]. 
-Der Wert wird dann in einen die relative Wahrscheinlichkeit umgerechnet, indem $P^k_xy$ durch die Summen der absoluten Wahrscheinlichkeiten aller möglichen Kanten (V\textsubscript{x},V\textsubscript{z}) mit V\textsubscript{z} als $V_z \in Nachbarn_{x}$.Daher ist: \[p^{k}_{xy}=\frac{P}{\sum_{z\in Nachbern_x}{}P^{k }_{xz}} \]
+Die Wahrscheinlichkeit für eine Kante gibt an wie hoch die Wahrscheinlichkeit (p) ist, dass eine gegebene Ameise ($k$) die Kante (V\textsubscript{x},V\textsubscript{y}) nimmt, wobei V\textsubscript{x} die momentane Position ist. Sie setzt sich aus der Menge an Pheromonen auf der Kante ($\tau$) und der Effektivität der Kante ($\eta$) zusammen. \[ P ^{ k }_{ xy }=\left(  \tau ^{ \alpha }_{ xy } \right)*\left(  \eta ^{ \beta }_{ xy } \right)\]
+Der Wert wird dann in eine relative Wahrscheinlichkeit umgerechnet, indem $P^k_xy$ durch die Summen der absoluten Wahrscheinlichkeiten aller möglichen Kanten (V\textsubscript{x},V\textsubscript{z}) mit V\textsubscript{z} als $V_z \in Nachbarn_{x}$ geteilt wird.Daher ist: \[p^{k}_{xy}=\frac{P}{\sum_{z\in Nachbern_x}{}P^{k }_{xz}} \]
 \subsubsection{Die Pheromonenupdateregel}
-Der zweite Teil ist die Pheromonenupdateregel. Sie ist für das Aktualisieren aller Kanten zuständig. Daher hat diese Regel einen großen Einfluss auf das Verhalten der Ameisen.Die einfachste Regel besagt: \[\tau_{xy}= (1-\rho)*\tau_{xy}+\sum_{k}^{m}{ \Delta\tau^k_{xy}} \]
-Wobei $\rho$ angibt wie viel von dem Duftstoff verdampft, $m$ die Anzahl an Ameisen ist und $\Delta\tau^k_{xy}$ die Menge an Pheromonen ist, die die Ameise $k$ auf der Kante (V\textsubscript{x},V\textsubscript{y}) hinterlassen hat. Dementsprechend ergibt sich $\Delta\tau^k_{xy}$ wie folgt wenn die Ameise $k$ über die Kante gegangen ist:\[\Delta\tau^k_{xy}=Q/L_k\] Wenn die Ameise nicht über die Kante gegangen ist, dann ist: \[\Delta\tau^k_{xy}=0\]
+Der zweite Teil ist die Pheromonenupdateregel. Sie ist für das Aktualisieren aller Kanten zuständig. Daher hat diese Regel einen großen Einfluss auf das Verhalten der Ameisen. Die einfachste Regel besagt: \[\tau_{xy}= (1-\rho)*\tau_{xy}+\sum_{k}^{m}{ \Delta\tau^k_{xy}} \]
+Wobei $\rho$ angibt wie viel von dem Duftstoff verdampft, $m$ die Anzahl an Ameisen ist und $\Delta\tau^k_{xy}$ die Menge an Pheromonen ist, die die Ameise $k$ auf der Kante (V\textsubscript{x},V\textsubscript{y}) hinterlassen hat. Dementsprechend ergibt sich $\Delta\tau^k_{xy}$ wie folgt, wenn die Ameise $k$ über die Kante gegangen ist:\[\Delta\tau^k_{xy}=Q/L_k\] Wenn die Ameise nicht über die Kante gegangen ist, dann ist: \[\Delta\tau^k_{xy}=0\]
 \subsection{Das travelling salesman problem}\label{TSP}
 Das travelling salesman problem (in deutsch: Reisehändlerproblem) ist ein relativ bekanntes Problem 
 in der Computertechnik. Es stellt die Frage:
-"'\textit{Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?}"\cite{wiki_TSP}\footnote{DE: Wenn eine List an Städten und deren Entfernungen zueinander bekannt ist, was ist dann der kürzeste Weg um alle Städte genau einmal zu besuchen und zum Anfang zurück zu kehren?}. Der Ursprung dieser Fragestellung ist unbekannt.\\\\
-Soll dieses Problem mit Hilfe von AS gelöst werden, so entspricht die Stadt einem Knoten und alle Knoten sind untereinander verbunden. Danach können die oben beschrieben Regeln angewandt werden (s. \ref{Kernidee})
-Als Beispiel soll der Weg in einem Netzwerk mit sechs Städten gefunden werden, der Graph sähe dann wie in Abbildung \ref{fig:2} aus. An jeder Stadt wird eine Ameise gestartet. Der kürzeste Weg \cite{aco-sim} sieht dann wie folgt aus \ref{fig:2} (rote Linien).
+"'\textit{Given a list of cities and the distances between each pair of cities, what is the shortest possible route that visits each city exactly once and returns to the origin city?}"\cite{wiki_TSP}\footnote{DE: Wenn eine Liste an Städten und deren Entfernungen zueinander bekannt ist, was ist dann der kürzeste Weg, um alle Städte genau einmal zu besuchen und zum Anfang zurück zu kehren?}. Der Ursprung dieser Fragestellung ist unbekannt.\\\\
+Soll dieses Problem mit Hilfe von AS gelöst werden, so entspricht die Stadt einem Knoten und alle Knoten sind untereinander verbunden. Danach können die oben beschriebenen Regeln angewandt werden (s. \ref{Kernidee})
+Als Beispiel soll der Weg in einem Netzwerk mit sechs Städten gefunden werden, der Graph sähe dann wie in Abbildung \ref{fig:2} aus. An jeder Stadt wird eine Ameise gestartet. Der kürzeste Weg \cite{aco-sim} sieht dann wie folgt aus (s. Abbildung \ref{fig:2} rote Linien).
 \begin{wrapfigure}[13]{l}{0.55\textwidth}
 \centering
 \includeinkscape[width=0.5\textwidth ,height=0.5\textwidth]{Extras/Abb2.pdf_tex}
@@ -73,23 +78,23 @@ Als Beispiel soll der Weg in einem Netzwerk mit sechs Städten gefunden werden, 
 \label{fig:2}
 \end{wrapfigure}
 \subsection{Die Anwendung}
-Nachdem nun der theoretische Teile betrachtet wurde, sind natürlich auch die tatsächlichen Anwendungen für ACO interessant. Einer der offensichtlichen Bereiche ist, der der Wegfindung. So wird ACO unter anderem in der Netzwerktechnik genutzt um Wege für die Pakete zu finden. Aber auch in den Naturwissenschaften findet ACO Anwendung, als Beispiel in der Biologie zur Proteinfaltung oder in der Nanotechnik. 
+Nachdem nun der theoretische Teil betrachtet wurde, sind natürlich auch die tatsächlichen Anwendungen für ACO interessant. Einer der offensichtlichen Bereiche ist, der der Wegfindung. So wird ACO unter anderem in der Netzwerktechnik genutzt um Wege für die Pakete zu finden. Aber auch in den Naturwissenschaften findet ACO Anwendung, zum Beispiel in der Biologie zur Proteinfaltung oder in der Nanotechnik. 
 \section{Anwendungen im Aufbauspiel}
 Nachdem nun der Algorithmus betrachtet wurde, folgt jetzt die Übertragung auf den Bereich der Aufbauspiele.
 
 \subsection{Das Problem}
-Ein Aufbauspiel soll aus zwei Teilen bestehen. Der erste sind die Gebäude die Waren verbrauchen und produzieren. Sie bestehen aus einer Liste an benötigten und produzierten Waren, einer Produktionsgeschwindigkeit, die angibt nach welcher Zeit die produzierten Waren, wenn die benötigten Waren vorhanden sind und im Inventar platz für die produzierten ist, in das Inventar hinzugefügt werden. Weiterhin bestehen Gebäude aus einer Inventurkapazität.
-Der zweite Teil sind die Waren selbst. Sie bestehen nur aus ihrem Volumen, daher wie viel Platz sie in dem Inventar einnehmen.\\\\
-Als Ausgangslage dient das bauen von Produktionsketten. Da es unterschiedlichste Ketten mit variierender Komplexität gibt, soll Beispielhaft nur die der Bretterproduktion betrachtet werden.\\\\
-Daher ergeben sich Zwei notwendige Gebäude. Ersteres ist der Holzfäller der in einem festen Zeitintervall von 2t\footnote{t: Beliebige Zeit} 1 Holzstamm\footnote{Platz eingenommen: 2 VE} produziert, ohne dabei benötigte Ressourcen\footnote{Das fällen von Bäumen und deren Existenz werden zur Vereinfachung weggelassen} zu haben. Die Lagerkapazitäten des Holzfällers sind 1L\footnote{L: Volumen des Lagers} Zweiteers Gebäude ist das Sägewerk das alle 1t\footnotemark[3] aus einem Holzstamm ein Brett\footnote{Platz eingenommen: 1 VE} produziert. Das Sägewerk hat eine Lagerkapazität von 2L\footnotemark[6]. 
-Als drittes Gebäude wird noch das Lagerhaus hinzugefügt, es dient nur dazu die produzierten Waren zu sammeln und die benötigten auf die Verbraucher zu verteilen. Weiterhin können die Lagerhäuser auch als Zwischenlager verwendet werden, um überschüssige Waren zu Lagern. Weiterhin dienen sie den Ameisen als Ziel und Ausgangspunkt ihrer Reise.\\\\
+Ein Aufbauspiel soll aus zwei Teilen bestehen. Der erste sind die Gebäude die Waren verbrauchen und produzieren. Sie bestehen aus einer Liste an benötigten und produzierten Waren, einer Produktionsgeschwindigkeit, die angibt nach welcher Zeit die produzierten Waren, wenn die benötigten Waren vorhanden sind und im Inventar Platz für die produzierten ist, in das Inventar hinzugefügt werden. Weiterhin bestehen Gebäude aus einer Inventurkapazität.
+Der zweite Teil sind die Waren selbst. Sie bestehen nur aus ihrem Volumen, wie viel Platz sie in dem Inventar einnehmen.\\\\
+Als Ausgangslage dient das Bauen von Produktionsketten. Da es unterschiedlichste Ketten mit variierender Komplexität gibt, soll beispielhaft nur die der Bretterproduktion betrachtet werden.\\\\
+Daher ergeben sich zwei notwendige Gebäude. Ersteres ist die Holzfällerhütte, die in einem festen Zeitintervall von 2t\footnote{t: beliebige Zeit} einen Holzstamm\footnote{Platz eingenommen: 2 VE} produziert, ohne dabei benötigte Ressourcen\footnote{Das Fällen von Bäumen und deren Existenz werden zur Vereinfachung weggelassen.} zu haben. Die Lagerkapazitäten des Holzfällers sind 1L\footnote{L: Volumen des Lagers}. Das zweite Gebäude ist das Sägewerk, das alle 1t\footnotemark[3] aus einem Holzstamm ein Brett\footnote{Platz eingenommen: 1 VE} produziert. Das Sägewerk hat eine Lagerkapazität von 2L\footnotemark[6]. 
+Als drittes Gebäude wird noch das Lagerhaus hinzugefügt, es dient nur dazu die produzierten Waren zu sammeln und die benötigten auf die Verbraucher zu verteilen. Weiterhin können die Lagerhäuser auch als Zwischenlager verwendet werden, um überschüssige Waren zu lagern. Außerdem dienen sie den Ameisen als Ziel und Ausgangspunkt ihrer Reise.\\\\
 Die unterschiedlichen Gebäude werden durch Straßen miteinander verbunden.
 \subsection{Die ACO Regeln}\label{Regeln}
 Damit der Standard Ant System Algorithmus für Aufbauspiele funktioniert, müssen gewisse Regeln erweitert werden. \\\\
-Die Regel für die Effektivität $\tau$ besteht nicht nur aus der Distanz, damit die Ameisen nicht die Waren über die ganze Karte tragen, sonder auch aus der Bilanz des Zieles. Die Bilanz beinhaltet wie viel Ressourcen in einer Zeiteinheit t\footnotemark[3] verbraucht (in negativ) und produziert werden (in positiv). Diese Regel soll verhindern, dass die Ameisen nicht ihre Ware zu einem Lagerhaus bringen, das einen Überschuss an dieser Ware hat.
+Die Regel für die Effektivität $\tau$ besteht nicht nur aus der Distanz, damit die Ameisen nicht die Waren über die ganze Karte tragen, sondern auch aus der Bilanz des Zieles. Die Bilanz beinhaltet wie viel Ressourcen in einer Zeiteinheit t\footnotemark[3] verbraucht (in negativ) und produziert werden (in positiv). Diese Regel soll verhindern, dass die Ameisen nicht ihre Ware zu einem Lagerhaus bringen, das einen Überschuss an dieser Ware hat.
 
-\subsection{Die Implementation}
-Nachdem die Grundlage für das Spiel gesetzt wurde, soll nun die einzelnen Formeln und Abläufe in Pseudocode übersetzt und erläutert werden. \\\\
+\subsection{Die Implementation}\label{pseudo}
+Nachdem die Grundlage für das Spiel gesetzt wurde, sollen nun die einzelnen Formeln und Abläufe in Pseudocode übersetzt und erläutert werden. \\\\
 Ein zentraler Teil des Algorithmus ist die Berechnung der absoluten Wahrscheinlichkeit $P$. \\\\
 \begin{algorithm}[H]
  \caption{Wahrscheinlichkeit P}
@@ -99,8 +104,7 @@ Ein zentraler Teil des Algorithmus ist die Berechnung der absoluten Wahrscheinli
  P = (kante.Attraktivität * $\alpha$ ) * (effizienz(kante) * $\beta$) : Dezimalzahl\;
  gib P zurück\;
  }
-\end{algorithm}
-Diese Funktion ist eine programmatische Umsetzung der unter \ref{P/p} beschrieben Formel für P.
+\end{algorithm}Diese Funktion ist eine programmatische Umsetzung der unter \ref{P/p} beschrieben Formel für P.
 Die Funktion Effizienz(kante), den Regeln aus \ref{Regeln}  folgend, verläuft wie folgt:\\\\
 \begin{algorithm}[H]
 \caption{Effizienz}
@@ -112,17 +116,15 @@ ziel = null : Knoten\;
 }{
 ziel = kante.A\;
 }
-d = 1 : Dezimalzahl\;
-d = $\sqrt[2]{(kante.A.x - kante.B.x)^2 + (kante.A.y - kante.B.y)^2}$\;
+d = $\sqrt[2]{(kante.A.x - kante.B.x)^2 + (kante.A.y - kante.B.y)^2}$ : Dezimalzahl\;
 \uIf{ziel.gebäude ist Variante von Lagerhaus und ziel.gebäude.balance enthält transportierteRessource}{
 d = d + $\theta$ * ziel.gebäude.balance(transportierteRessource)\;
 }
 gib $\frac{1}{d}$ zurück\;
 }
-\end{algorithm}
-Im ersten Teil der Funktion wird entschieden welche der beiden Knoten der Kante genommen betrachtet werden soll. Da nicht zu der eigenen Position gegangen werden soll, müssen daher die Werter des anderen Knotens verwendet werden. Als nächster Schritt ist dann die Distanz zwischen den beiden Knoten zu berechnen. Sollte dann das Gebäude an dem Zielknoten ein Lagerhaus sein, so wird der Verbrauch bzw. die Produktion der transportierten Ressource auf die Distanz ab bzw. aufgeschlagen. 
+\end{algorithm}Im ersten Teil der Funktion wird entschieden, welcher der beiden Knoten der Kante genommen und betrachtet werden soll. Da nicht zu der eigenen Position gegangen werden soll, müssen daher die Werte des anderen Knotens verwendet werden. Als nächster Schritt ist dann die Distanz zwischen den beiden Knoten zu berechnen. Sollte dann das Gebäude an dem Zielknoten ein Lagerhaus sein, so wird der Verbrauch bzw. die Produktion der transportierten Ressource auf die Distanz ab- bzw. aufgeschlagen. 
 Der Rückgabewert entspricht 1/d, damit größere Strecken unattraktiver sind.\\\\
-Im Nächsten Schritt muss den die relative Wahrscheinlichkeit p berechnet werden. Dazu wird die absolute Wahrscheinlichkeit P durch die Summe aller Wahrscheinlichkeiten geteilt.\\\\
+Im nächsten Schritt muss die relative Wahrscheinlichkeit p berechnet werden. Dazu wird die absolute Wahrscheinlichkeit P durch die Summe aller Wahrscheinlichkeiten geteilt.\\\\
 \begin{algorithm}[H]
 \caption{Summe der Wahrscheinlichkeiten}
 \DontPrintSemicolon
@@ -133,17 +135,15 @@ ergebnis = ergebnis + berechneP(momentan)\;
 }
 gib ergebnis zurück\;
 }
-\end{algorithm}
-Dieser Algorithmus ist das Iterative aufrufen und addieren der Ergebnisse der Funktion P, für jede Kante die von der momentanen Position ausgehen.\\\\
-Daher Ergibt sich die relative Wahrscheinlichkeit p wie folgt:\\\\
+\end{algorithm}Dieser Algorithmus ist das Iterative aufrufen und addieren der Ergebnisse der Funktion P für jede Kante, die von der momentanen Position ausgehen.\\\\
+Daher ergibt sich die relative Wahrscheinlichkeit p wie folgt:\\\\
 \begin{algorithm}[H]
 \caption{Wahrscheinlichkeit p}
 \DontPrintSemicolon
 \Fn{berechnep(kante : Kante) : Dezimalzahl}{
 gib $\frac{berechneP(kante)}{summeWahrscheinlichkeiten()}$ zurück\;
 }
-\end{algorithm}
-Damit nun eine Kante selektiert werden kann, muss zuerst jeder vom momentanen Knoten ausgehenden Kante eine Wahrscheinlichkeit zugewiesen werden und dann eine ausgewählt werden. Da p eine relative Wahrscheinlichkeit ist, kann ein Wert zwischen 0 und 1 (0\% und 100\%)bestimmt werden und dann alle Wahrscheinlichkeit aufaddiert werden, bis dieser Schwellwert überschritten ist. Der Pseudocode sieht daher so aus:\\\\
+\end{algorithm}Damit nun eine Kante selektiert werden kann, muss zuerst jeder vom momentanen Knoten ausgehenden Kante eine Wahrscheinlichkeit zugewiesen werden und dann eine ausgewählt werden. Da p eine relative Wahrscheinlichkeit ist, kann ein Wert zwischen 0 und 1 (0\% und 100\%) bestimmt werden und dann alle Wahrscheinlichkeiten aufaddiert werden, bis dieser Schwellwert überschritten ist. Der Pseudocode sieht daher so aus:\\\\
 \begin{algorithm}[H]
 \caption{Selektion einer Kante}
 \DontPrintSemicolon
@@ -167,11 +167,45 @@ index = index + 1\;
 }
 gib null zurück\;
 }
-
-Nachdem die Wegfindung 
+\end{algorithm}Nachdem die Kanten für alle Ameisen bestimmt worden ist und diese auch gegangen sind, müssen nun die Pheromonen auf den Kanten neu verteilt werden. Dazu merkt sich das Programm, über welche Kante sich in der jetzigen Runde jeweils eine Ameise bewegt hat. Im ersten Teil wird dann die allgemeine Verdunstung berechnet.\\\\
+\begin{algorithm}[H]
+\Fn{verdunste() : nichts}{
+\ForEach{momentanerKnoten : Knoten in alleKnoten}{
+\ForEach{momentaneKante : Kante in momentanerKonten.Kanten}{
+\If{momentaneKante.A gleich momentanerKnoten}{
+momentaneKante.Attraktivität = momentatneKante.Attraktivität * $\rho$\;
+}
+}
+}
+}
+\caption{Verdunstung}
+\end{algorithm}Als zweiter Schritt werden dann alle begangenen Kanten, entsprechend den Regeln, attraktiver gemacht.
+\begin{algorithm}
+\DontPrintSemicolon
+\Fn{belohne() : nichts}{
+\ForEach{momentane : Kante in geganeneKanten}{
+	d = 1 : Dezimalzahl\;
+	d = $\sqrt[2]{(momentane.A.x - momentane.B.x)^2 + (momentane.A.y - momentane.B.y)^2}$ \;
+	momentane.Attraktivität = momentane.Attraktivität * Q / d\;
+}
+}
+Hier nicht gezeigt, aber dennoch von Bedeutung ist das Bewegen der Ameisen, sowie das Entscheiden über welche Ressource und wie viel davon transportiert werden sollen und wann sie wieder abgeben werden sollen.
 \end{algorithm}
+\subsection{Erweiterungen}
+Der in \ref{pseudo} beschriebene Pseudocode kann noch erweitert und verbessert werden. Zuerst einmal gibt es bestimmt noch effizientere Methoden die Formeln umzusetzen.
+Eine weitere Möglichkeit wäre die Abläufe zu parallelisieren, da die Berechnungen der einzelnen Wahrscheinlichkeiten nicht von einender Abhängig ist.\\\\
+Inhaltlich würde es sich eventuell lohnen den Ameisen mehr Voraussicht zu geben, daher wenn die Wahrscheinlichkeit für einen Knoten berechnet wird, die Produktion und den Verbrauch der Nachbarn ebendieses Knotens zu beachten. 
+Weiterhin könnte eine Funktion über das Pheromonenlevel gelegt werden, sodass sehr viel benutzte Kanten gemieden werden. Diese hätte eine dynamischere Verteilung der Träger zu folge.
+\subsection{Nachteile}\label{Nachteile}
+Natürlich hat die Anwendung des ACO Algorithmus auch ihre Nachteile. So ist er nicht Determinativ, daher wenn zwei mal genau die gleiche Produktionsketten gebaut werden, können sie doch unterschiedlich Effizient sein, da die Träger unterschiedliche Wege gehen.
+Dies hat nicht nur zur folge das es keine beste Lösung gibt, daher Spieler nicht auf die Straße genau optimieren können, sondern auch, wenn die Faktoren ($\alpha,\beta etc.$) nicht richtig eingestellt sind, dass sich die Träger sehr dämlich verhalten.\\\\
+Der wohl größte Nachteil ist, dass für diesen Algorithmus alle Wege simuliert werden, daher nicht einfach feste Zahlen in Zeitintervallen addiert werden können.
+\subsection{Vorteile}
+Der in \ref{Nachteile} erwähnte Nachteil der Inkonsistenz, hat aber auch zur folge das eine gewisse Dynamik in das Spiel kommt und nicht nur die beste Lösung im Internet gesucht werden kann. Daher wird das eigene Experimentieren gefördert.
+Außerdem ist der Algorithmus Dynamisch und Konsistenz, daher wenn einmal ein Weg gefunden wurde wird sich diese kaum verändern, doch sollte ein neuer Teil hinzugefügt werden, so würden sich die Träger langsam an die neuen Gegebenheit anpassen.
 \section{Fazit}
-
+Daher ist der ACO Algorithmus durchaus ein valide Option für Aufbauspiele. Allerdings gibt es einige Voraussetzungen, sollte das Spiel komplett berechenbar sein, so funktioniert der Algorithmus nicht. Ebenso bereitet er Problem bei Spielen mit massiver Größe an Simulation (wie z.B. Anno 1800).
+Wird aber ein Spiel wie die Siedler angestrebt ist ACO durchaus eine Überlegung wert.
 
 \nocite{*}
 \printbibliography
