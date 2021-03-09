@@ -15,6 +15,12 @@
 \usepackage{mathptmx}
 \usepackage{fancyhdr}
 
+\usepackage{ifpdf}
+\usepackage{graphicx}
+\ifpdf
+  \DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+
 
 \SetKwProg{Fn}{Funktion}{ ist}{Ende}
 
@@ -26,11 +32,24 @@
  
 \addbibresource{Extras/sources.bib}
 
+\title{Wege im Aufbauspiel - Ant Colony Optimization}
 
+\author{Adrian Kumbrink}
 
 \pagenumbering{roman}
 
 \begin{document}
+
+\begin{titlepage}
+
+
+\maketitle
+\thispagestyle{empty}
+
+\end{titlepage}
+
+
+
 \thispagestyle{empty}
 \tableofcontents
 \pagebreak
@@ -117,7 +136,7 @@ ziel = null : Knoten\;
 ziel = kante.A\;
 }
 d = $\sqrt[2]{(kante.A.x - kante.B.x)^2 + (kante.A.y - kante.B.y)^2}$ : Dezimalzahl\;
-\uIf{ziel.gebäude ist Variante von Lagerhaus und ziel.gebäude.balance enthält transportierteRessource}{
+\uIf{ziel.gebäude ist Variante von Lagerhaus und ziel.gebäude.balanceEntält(transportierteRessource) }{
 d = d + $\theta$ * ziel.gebäude.balance(transportierteRessource)\;
 }
 gib $\frac{1}{d}$ zurück\;
@@ -167,13 +186,13 @@ index = index + 1\;
 }
 gib null zurück\;
 }
-\end{algorithm}Nachdem die Kanten für alle Ameisen bestimmt wurden und diese entlang der Kanten gegangen sind, müssen nun die Pheromonen neu verteilt werden. Dazu merkt sich das Programm, über welche Kante sich in der jetzigen Runde jeweils eine Ameise bewegt hat. Im ersten Teil wird dann die allgemeine Verdunstung berechnet.\\\\
+\end{algorithm}Nachdem die Kanten für alle Ameisen bestimmt worden ist und diese auch gegangen sind, müssen nun die Pheromonen auf den Kanten neu verteilt werden. Dazu merkt sich das Programm, über welche Kante sich in der jetzigen Runde jeweils eine Ameise bewegt hat. Im ersten Teil wird dann die allgemeine Verdunstung berechnet.\\\\
 \begin{algorithm}[H]
 \Fn{verdunste() : nichts}{
 \ForEach{momentanerKnoten : Knoten in alleKnoten}{
-\ForEach{momentaneKante : Kante in momentanerKnoten.Kanten}{
+\ForEach{momentaneKante : Kante in momentanerKonten.Kanten}{
 \If{momentaneKante.A gleich momentanerKnoten}{
-momentaneKante.Attraktivität = momentaneKante.Attraktivität * $\rho$\;
+momentaneKante.Attraktivität = momentatneKante.Attraktivität * $\rho$\;
 }
 }
 }
@@ -183,31 +202,37 @@ momentaneKante.Attraktivität = momentaneKante.Attraktivität * $\rho$\;
 \begin{algorithm}
 \DontPrintSemicolon
 \Fn{belohne() : nichts}{
-\ForEach{momentane : Kante in gegangeneKanten}{
+\ForEach{momentane : Kante in geganeneKanten}{
 	d = 1 : Dezimalzahl\;
 	d = $\sqrt[2]{(momentane.A.x - momentane.B.x)^2 + (momentane.A.y - momentane.B.y)^2}$ \;
 	momentane.Attraktivität = momentane.Attraktivität * Q / d\;
 }
 }
-Hier nicht gezeigt, aber dennoch von Bedeutung, ist das Bewegen der Ameisen, sowie das Entscheiden über welche Ressource und wie viel davon transportiert und wann sie wieder abgegeben werden soll.
+Hier nicht gezeigt, aber dennoch von Bedeutung ist das Bewegen der Ameisen, sowie das Entscheiden über welche Ressource und wie viel davon transportiert werden sollen und wann sie wieder abgeben werden sollen.
 \end{algorithm}
 \subsection{Erweiterungen}
 Der in \ref{pseudo} beschriebene Pseudocode kann noch erweitert und verbessert werden. Zuerst einmal gibt es bestimmt noch effizientere Methoden die Formeln umzusetzen.
-Eine weitere Möglichkeit wäre die Abläufe zu parallelisieren, da die Berechnungen der einzelnen Wahrscheinlichkeiten nicht von einander abhängig sind.\\\\
-Inhaltlich würde es sich eventuell lohnen den Ameisen mehr Voraussicht zu geben, wenn die Wahrscheinlichkeit für einen Knoten berechnet wird, die Produktion und den Verbrauch der Nachbarn ebendieses Knotens zu beachten. 
-Weiterhin lässt sich eine Funktion über das Pheromonenlevel legen, sodass sehr viel benutzte Kanten gemieden werden. Diese hätte eine dynamischere Verteilung der Träger zu folge.
+Eine weitere Möglichkeit wäre die Abläufe zu parallelisieren, da die Berechnungen der einzelnen Wahrscheinlichkeiten nicht von einender Abhängig ist.\\\\
+Inhaltlich würde es sich eventuell lohnen den Ameisen mehr Voraussicht zu geben, daher wenn die Wahrscheinlichkeit für einen Knoten berechnet wird, die Produktion und den Verbrauch der Nachbarn ebendieses Knotens zu beachten. 
+Weiterhin könnte eine Funktion über das Pheromonenlevel gelegt werden, sodass sehr viel benutzte Kanten gemieden werden. Diese hätte eine dynamischere Verteilung der Träger zu folge.
 \subsection{Nachteile}\label{Nachteile}
-Natürlich hat die Anwendung des ACO Algorithmus auch ihre Nachteile. So ist er nicht determinativ, wenn zweimal genau die gleichen Produktionsketten gebaut werden, können sie doch unterschiedlich effizient sein, da die Träger möglicherweise unterschiedliche Wege gehen.
-Dies hat nicht nur zur Folge das es keine beste Lösung gibt, daher Spieler nicht auf den Punkt genau optimieren können, sondern auch, wenn die Faktoren ($\alpha,\beta$ etc.) nicht richtig eingestellt sind, dass sich die Träger sehr ineffizient und unberechenbar verhalten.\\\\
+Natürlich hat die Anwendung des ACO Algorithmus auch ihre Nachteile. So ist er nicht Determinativ, daher wenn zwei mal genau die gleiche Produktionsketten gebaut werden, können sie doch unterschiedlich Effizient sein, da die Träger unterschiedliche Wege gehen.
+Dies hat nicht nur zur folge das es keine beste Lösung gibt, daher Spieler nicht auf die Straße genau optimieren können, sondern auch, wenn die Faktoren ($\alpha,\beta etc.$) nicht richtig eingestellt sind, dass sich die Träger sehr dämlich verhalten.\\\\
 Der wohl größte Nachteil ist, dass für diesen Algorithmus alle Wege simuliert werden, daher nicht einfach feste Zahlen in Zeitintervallen addiert werden können.
 \subsection{Vorteile}
-Der in \ref{Nachteile} erwähnte Nachteil der Inkonsistenz, hat aber auch zur Folge, dass eine gewisse Dynamik in das Spiel kommt und nicht nur die beste Lösung im Internet gesucht werden kann. Daher wird das eigene Experimentieren gefördert.
-Außerdem ist der Algorithmus dynamisch und konsistent, wenn sich einmal ein Weg findet, verändert sich dieser kaum, doch sollte ein neuer Teil hinzugefügt werden, so passen sich die Träger langsam an die neue Gegebenheit an.
+Der in \ref{Nachteile} erwähnte Nachteil der Inkonsistenz, hat aber auch zur folge das eine gewisse Dynamik in das Spiel kommt und nicht nur die beste Lösung im Internet gesucht werden kann. Daher wird das eigene Experimentieren gefördert.
+Außerdem ist der Algorithmus Dynamisch und Konsistenz, daher wenn einmal ein Weg gefunden wurde wird sich diese kaum verändern, doch sollte ein neuer Teil hinzugefügt werden, so würden sich die Träger langsam an die neuen Gegebenheit anpassen.
 \section{Fazit}
-Daher ist der ACO Algorithmus durchaus ein valide Option für Aufbauspiele. Allerdings gibt es einige Voraussetzungen. Soll das Spiel komplett berechenbar sein, so funktioniert der Algorithmus nicht. Ebenso bereitet er Probleme bei Spielen mit massiver Menge an Simulation (wie z.B. Anno 1800).
-Wird aber ein Spiel wie die Siedler angestrebt, ist ACO durchaus eine Überlegung wert.
+Daher ist der ACO Algorithmus durchaus ein valide Option für Aufbauspiele. Allerdings gibt es einige Voraussetzungen, sollte das Spiel komplett berechenbar sein, so funktioniert der Algorithmus nicht. Ebenso bereitet er Problem bei Spielen mit massiver Größe an Simulation (wie z.B. Anno 1800).
+Wird aber ein Spiel wie die Siedler angestrebt ist ACO durchaus eine Überlegung wert.
 
-\nocite{*}
-\printbibliography
+
+\section{Anhänge}
+\begin{center}
+\includegraphics{Extras/uml.0}
+\end{center}
+%\nocite{*}
+\addcontentsline{toc}{section}{References}
+\printbibliography[heading=bibnumbered]
 
 \end{document}
