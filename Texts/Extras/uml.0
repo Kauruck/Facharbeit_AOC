@@ -1,8 +1,8 @@
 %!PS
-%%BoundingBox: -70 -487 166 1 
-%%HiResBoundingBox: -69.14061 -486.54646 165.86269 0.25 
+%%BoundingBox: -70 -527 166 1 
+%%HiResBoundingBox: -69.14061 -526.32805 165.86269 0.25 
 %%Creator: MetaPost 2.00
-%%CreationDate: 2021.03.09:1637
+%%CreationDate: 2021.03.09:1659
 %%Pages: 1
 %*Font: ptmr8r 9.96265 9.96265 20:80d400207d18e1347fdfbf2000000000000000000000000008
 %%BeginProlog
@@ -274,5 +274,33 @@ newpath -13.82797 -450.41803 moveto
 (belohne\(\)\040:\040nichts) ptmr8r 9.96265 fshow
 1.79086 -481.38963 moveto
 (bewegeAlle\(\)\040:\040nichts) ptmr8r 9.96265 fshow
+ 0.7 0.7 0.7 setrgbcolor
+newpath -7.30853 -496.54646 moveto
+105.28061 -496.54646 lineto
+105.28061 -526.32805 lineto
+-7.30853 -526.32805 lineto
+ closepath fill
+ 0.9 0.9 0.9 setrgbcolor
+newpath -8.30853 -495.54646 moveto
+104.28061 -495.54646 lineto
+104.28061 -525.32805 lineto
+-8.30853 -525.32805 lineto
+ closepath fill
+ 0 0 0 setrgbcolor
+newpath -8.30853 -495.54646 moveto
+104.28061 -495.54646 lineto
+104.28061 -525.32805 lineto
+-8.30853 -525.32805 lineto
+ closepath stroke
+newpath -8.30853 -508.25372 moveto
+104.28061 -508.25372 lineto stroke
+newpath -8.30853 -520.82805 moveto
+104.28061 -520.82805 lineto stroke
+27.51305 -505.03203 moveto
+(Ressource) ptmr8r 9.96265 fshow
+-4.30853 -516.82805 moveto
+(+) ptmr8r 9.96265 fshow
+7.31029 -518.7583 moveto
+(volumen\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
 showpage
 %%EOF
