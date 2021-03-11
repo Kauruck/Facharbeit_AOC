@@ -142,7 +142,7 @@ ziel = null : Knoten\;
 ziel = kante.A\;
 }
 d = $\sqrt[2]{(kante.A.x - kante.B.x)^2 + (kante.A.y - kante.B.y)^2}$ : Dezimalzahl\;
-\uIf{ziel.gebäude ist Variante von Lagerhaus und ziel.gebäude.balanceEntält(transportierteRessource) }{
+\uIf{ziel.gebäude ist Variante von Lagerhaus und ziel.gebäude.balanceEnthält(transportierteRessource) }{
 d = d + $\theta$ * ziel.gebäude.balance(transportierteRessource)\;
 }
 gib $\frac{1}{d}$ zurück\;
@@ -211,8 +211,8 @@ momentaneKante.Attraktivität = momentatneKante.Attraktivität * ($1 - \rho$)\;
 }
 }
 \caption{Verdunstung}
-\end{algorithm}Als zweiter Schritt werden dann alle begangenen Kanten, entsprechend den Regeln, attraktiver gemacht.
-\begin{algorithm}
+\end{algorithm}Als zweiter Schritt werden dann alle begangenen Kanten, entsprechend den Regeln, attraktiver gemacht.\\\\
+\begin{algorithm}[H]
 \DontPrintSemicolon
 \Fn{belohne() : nichts}{
 \ForEach{momentane : Kante in geganeneKanten}{
@@ -221,24 +221,24 @@ momentaneKante.Attraktivität = momentatneKante.Attraktivität * ($1 - \rho$)\;
 	momentane.Attraktivität = momentane.Attraktivität * Q / d\;
 }
 }
-Hier wird der Einfachheit halber die Kosten mit der Länge gleichgesetzt.
-Hier nicht gezeigt, aber dennoch von Bedeutung ist das Bewegen der Ameisen, sowie das Entscheiden über welche Ressource und wie viel davon transportiert werden sollen und wann sie wieder abgeben werden sollen.
 \end{algorithm}
-\subsection{Erweiterungen}
-Der in \ref{pseudo} beschriebene Pseudocode kann noch erweitert und verbessert werden. Zuerst einmal gibt es bestimmt noch effizientere Methoden die Formeln umzusetzen.
-Eine weitere Möglichkeit wäre die Abläufe zu parallelisieren, da die Berechnungen der einzelnen Wahrscheinlichkeiten nicht von einender Abhängig ist.\\\\
-Inhaltlich würde es sich eventuell lohnen den Ameisen mehr Voraussicht zu geben, daher wenn die Wahrscheinlichkeit für einen Knoten berechnet wird, die Produktion und den Verbrauch der Nachbarn ebendieses Knotens zu beachten. 
-Weiterhin könnte eine Funktion über das Pheromonenlevel gelegt werden, sodass sehr viel benutzte Kanten gemieden werden. Diese hätte eine dynamischere Verteilung der Träger zu folge.
+Hier wird der Einfachheit halber die Kosten mit der Länge gleichgesetzt.\\\\
+Hier nicht gezeigt, aber dennoch von Bedeutung ist die Bewegung der Ameisen. Auch die Entscheidung welche Ressource transportiert werden soll, die Menge derer und der Abgabeort werden hier nicht weiter betrachtet.
+\section{Bewertung}
 \subsection{Nachteile}\label{Nachteile}
-Natürlich hat die Anwendung des ACO Algorithmus auch ihre Nachteile. So ist er nicht Determinativ, daher wenn zwei mal genau die gleiche Produktionsketten gebaut werden, können sie doch unterschiedlich Effizient sein, da die Träger unterschiedliche Wege gehen.
-Dies hat nicht nur zur folge das es keine beste Lösung gibt, daher Spieler nicht auf die Straße genau optimieren können, sondern auch, wenn die Faktoren ($\alpha,\beta etc.$) nicht richtig eingestellt sind, dass sich die Träger sehr dämlich verhalten.\\\\
-Der wohl größte Nachteil ist, dass für diesen Algorithmus alle Wege simuliert werden, daher nicht einfach feste Zahlen in Zeitintervallen addiert werden können.
+Natürlich hat die Anwendung des ACO Algorithmus auch ihre Nachteile. So ist er nicht Deterministisch. Dies bedeutet das bei zwei exakt gleichen Graphen, unterschiedliche Wege entstehen können.
+Dies hat zur Folge das es eine optimale und reproduzierbare Lösung nicht geben kann. Für ein optimales Ergebnis müssen die Faktoren ($\alpha,\beta etc.$) experimentell ermittelt werden.\\\\
+Da der Algorithmus die einzelnen Warentransporte simuliert, eignet er sich nicht für Simulationen mit großem Transportaufkommen.
 \subsection{Vorteile}
-Der in \ref{Nachteile} erwähnte Nachteil der Inkonsistenz, hat aber auch zur folge das eine gewisse Dynamik in das Spiel kommt und nicht nur die beste Lösung im Internet gesucht werden kann. Daher wird das eigene Experimentieren gefördert.
-Außerdem ist der Algorithmus Dynamisch und Konsistenz, daher wenn einmal ein Weg gefunden wurde wird sich diese kaum verändern, doch sollte ein neuer Teil hinzugefügt werden, so würden sich die Träger langsam an die neuen Gegebenheit anpassen.
+Die Zufallskomponente des Algorithmus fördert die Spieldynamik. Da es eine absolut beste Lösung nicht gibt, lädt der Algorithmus den Spieler zu eigenem Experimentieren ein.
+Weiterhin passt sich ACO neuen Gegebenheiten automatisch an. Aufgrund der immer fortwährenden Optimierung, erfolgt ein solches Anpassen nur langsam. Dies bildet reale Prozesse eher ab.
+\subsection{Erweiterungen}
+Der in \ref{pseudo} beschriebene Pseudocode bietet noch Möglichkeiten der Verbesserung.
+Eine dieser wäre die Berechnung der Wahrscheinlichkeit zu parallelisieren, da die Berechnungen der einzelnen Wahrscheinlichkeiten nicht von einender Abhängig sind. Auch eine Analyse des Algorithmus, besonders im Hinblick auf sprachliche Möglichkeiten, könnte sinnvoll sein.\\\\
+Auch der Algorithmus selbst bietet Möglichkeiten für Erweiterung. So könnte die Berechnung der Pheromone so erweitert werden, dass viel genutzte Kannte gemieden werden.Diese hätte eine dynamischere Verteilung der Ameisen zur Folge. Auch eine Betrachtung der Umgebung des Zieles, kann bessere Resultate liefern.
 \section{Fazit}
-Daher ist der ACO Algorithmus durchaus ein valide Option für Aufbauspiele. Allerdings gibt es einige Voraussetzungen, sollte das Spiel komplett berechenbar sein, so funktioniert der Algorithmus nicht. Ebenso bereitet er Problem bei Spielen mit massiver Größe an Simulation (wie z.B. Anno 1800).
-Wird aber ein Spiel wie die Siedler angestrebt ist ACO durchaus eine Überlegung wert.
+Der ACO Algorithmus ist durchaus ein valide Option für Aufbauspiele. Allerdings gibt es einige Voraussetzungen. Soll das Spiel komplett vorhersehbar sein, so funktioniert der Algorithmus nicht. Ebenso bereitet er Problem bei Spielen mit massiver Größe an Simulationen (wie z.B. Anno 1800).
+Wird aber ein Spiel wie die Siedler angestrebt, in denen vielfältiger Warentransport erwünscht ist, ist ACO durchaus eine Überlegung wert.
 
 
 \section{UMLs}

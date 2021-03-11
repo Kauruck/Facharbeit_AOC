@@ -1,306 +1,306 @@
 %!PS
-%%BoundingBox: -70 -527 166 1 
-%%HiResBoundingBox: -69.14061 -526.32805 165.86269 0.25 
+%%BoundingBox: -70 -528 166 1 
+%%HiResBoundingBox: -69.14061 -527.19962 165.86269 0.25 
 %%Creator: MetaPost 2.00
-%%CreationDate: 2021.03.09:1659
+%%CreationDate: 2021.03.11:2105
 %%Pages: 1
-%*Font: ptmr8r 9.96265 9.96265 20:80d400207d18e1347fdfbf2000000000000000000000000008
+%*Font: ptmr8r 9.96265 9.96265 20:80d400207d18e1347fdfbfe000000000000000000000000008
 %%BeginProlog
 %%EndProlog
 %%Page: 1 1
  0.7 0.7 0.7 setrgbcolor
 newpath 1 -1 moveto
 96.97208 -1 lineto
-96.97208 -43.14697 lineto
-1 -43.14697 lineto
+96.97208 -64.14697 lineto
+1 -64.14697 lineto
  closepath fill
  0.9 0.9 0.9 setrgbcolor
 newpath 0 0 moveto
 95.97208 0 lineto
-95.97208 -42.14697 lineto
-0 -42.14697 lineto
+95.97208 -63.14697 lineto
+0 -63.14697 lineto
  closepath fill
  0 0 0 setrgbcolor 0 0.5 dtransform truncate idtransform setlinewidth pop [] 0 setdash 1 setlinejoin
  10 setmiterlimit
 newpath 0 0 moveto
 95.97208 0 lineto
-95.97208 -42.14697 lineto
-0 -42.14697 lineto
+95.97208 -63.14697 lineto
+0 -63.14697 lineto
  closepath stroke
  1 setlinecap
 newpath 0 -12.48557 moveto
 95.97208 -12.48557 lineto stroke
-newpath 0 -37.64697 moveto
-95.97208 -37.64697 lineto stroke
+newpath 0 -58.64697 moveto
+95.97208 -58.64697 lineto stroke
 33.32112 -9.48557 moveto
 (Knoten) ptmr8r 9.96265 fshow
 4 -23.14697 moveto
 (+) ptmr8r 9.96265 fshow
 4.00002 -33.64697 moveto
 (+) ptmr8r 9.96265 fshow
+4.00002 -44.14697 moveto
+(+) ptmr8r 9.96265 fshow
+4.00002 -54.64697 moveto
+(+) ptmr8r 9.96265 fshow
 15.61884 -22.99014 moveto
 (geb\344ude\040:\040Geb\344ude) ptmr8r 9.96265 fshow
 15.61884 -34.02312 moveto
-(kanten\040:\040Katen[]) ptmr8r 9.96265 fshow
+(kanten\040:\040Kante[]) ptmr8r 9.96265 fshow
+15.61884 -46.07722 moveto
+(x\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
+15.61884 -54.49014 moveto
+(y\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
  0.7 0.7 0.7 setrgbcolor
-newpath 17.03978 -53.14697 moveto
-80.9323 -53.14697 lineto
-80.9323 -93.42856 lineto
-17.03978 -93.42856 lineto
+newpath -12.84247 -74.14697 moveto
+110.81454 -74.14697 lineto
+110.81454 -124.92856 lineto
+-12.84247 -124.92856 lineto
  closepath fill
  0.9 0.9 0.9 setrgbcolor
-newpath 16.03978 -52.14697 moveto
-79.9323 -52.14697 lineto
-79.9323 -92.42856 lineto
-16.03978 -92.42856 lineto
+newpath -13.84247 -73.14697 moveto
+109.81454 -73.14697 lineto
+109.81454 -123.92856 lineto
+-13.84247 -123.92856 lineto
  closepath fill
  0 0 0 setrgbcolor
-newpath 16.03978 -52.14697 moveto
-79.9323 -52.14697 lineto
-79.9323 -92.42856 lineto
-16.03978 -92.42856 lineto
+newpath -13.84247 -73.14697 moveto
+109.81454 -73.14697 lineto
+109.81454 -123.92856 lineto
+-13.84247 -123.92856 lineto
  closepath stroke
-newpath 16.03978 -64.85423 moveto
-79.9323 -64.85423 lineto stroke
-newpath 16.03978 -87.92856 moveto
-79.9323 -87.92856 lineto stroke
-36.09076 -61.63254 moveto
+newpath -13.84247 -85.85423 moveto
+109.81454 -85.85423 lineto stroke
+newpath -13.84247 -119.42856 moveto
+109.81454 -119.42856 lineto stroke
+36.09076 -82.63254 moveto
 (Kante) ptmr8r 9.96265 fshow
-20.03978 -73.42856 moveto
+-9.84247 -94.42856 moveto
 (+) ptmr8r 9.96265 fshow
-20.0398 -83.92856 moveto
+-9.84245 -104.92856 moveto
 (+) ptmr8r 9.96265 fshow
-31.65862 -75.35881 moveto
+-9.84245 -115.42856 moveto
+(+) ptmr8r 9.96265 fshow
+1.77637 -96.35881 moveto
 (A\040:\040Knoten) ptmr8r 9.96265 fshow
-31.65862 -85.85881 moveto
+1.77637 -106.85881 moveto
 (B\040:\040Knoten) ptmr8r 9.96265 fshow
+1.77637 -117.35881 moveto
+(attraktivit\344t\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
  0.7 0.7 0.7 setrgbcolor
-newpath -12.27992 -103.42856 moveto
-110.252 -103.42856 lineto
-110.252 -155.81157 lineto
--12.27992 -155.81157 lineto
+newpath -12.27992 -134.92856 moveto
+110.252 -134.92856 lineto
+110.252 -187.31157 lineto
+-12.27992 -187.31157 lineto
  closepath fill
  0.9 0.9 0.9 setrgbcolor
-newpath -13.27992 -102.42856 moveto
-109.252 -102.42856 lineto
-109.252 -154.81157 lineto
--13.27992 -154.81157 lineto
+newpath -13.27992 -133.92856 moveto
+109.252 -133.92856 lineto
+109.252 -186.31157 lineto
+-13.27992 -186.31157 lineto
  closepath fill
  0 0 0 setrgbcolor
-newpath -13.27992 -102.42856 moveto
-109.252 -102.42856 lineto
-109.252 -154.81157 lineto
--13.27992 -154.81157 lineto
+newpath -13.27992 -133.92856 moveto
+109.252 -133.92856 lineto
+109.252 -186.31157 lineto
+-13.27992 -186.31157 lineto
  closepath stroke
-newpath -13.27992 -115.18314 moveto
-109.252 -115.18314 lineto stroke
-newpath -13.27992 -150.31157 moveto
-109.252 -150.31157 lineto stroke
-30.28252 -112.18314 moveto
+newpath -13.27992 -146.68314 moveto
+109.252 -146.68314 lineto stroke
+newpath -13.27992 -181.81157 moveto
+109.252 -181.81157 lineto stroke
+30.28252 -143.68314 moveto
 (Geb\344ude) ptmr8r 9.96265 fshow
--9.27992 -125.31157 moveto
+-9.27992 -156.81157 moveto
 (+) ptmr8r 9.96265 fshow
--9.2799 -135.81157 moveto
+-9.2799 -167.31157 moveto
 (+) ptmr8r 9.96265 fshow
--9.2799 -146.31157 moveto
+-9.2799 -177.81157 moveto
 (+) ptmr8r 9.96265 fshow
-2.33891 -125.68771 moveto
+2.33891 -157.18771 moveto
 (verbraucht\040:\040Ressourcen[]) ptmr8r 9.96265 fshow
-2.33891 -135.65474 moveto
+2.33891 -167.15474 moveto
 (produziert\040:\040Ressourcen[]) ptmr8r 9.96265 fshow
-2.33891 -146.15474 moveto
+2.33891 -177.65474 moveto
 (produktionsZeit\040:\040Zahl) ptmr8r 9.96265 fshow
  0.7 0.7 0.7 setrgbcolor
-newpath -67.89061 -165.81157 moveto
-165.86269 -165.81157 lineto
-165.86269 -238.32301 lineto
--67.89061 -238.32301 lineto
+newpath -67.89061 -197.31157 moveto
+165.86269 -197.31157 lineto
+165.86269 -239.19458 lineto
+-67.89061 -239.19458 lineto
  closepath fill
  0.9 0.9 0.9 setrgbcolor
-newpath -68.89061 -164.81157 moveto
-164.86269 -164.81157 lineto
-164.86269 -237.32301 lineto
--68.89061 -237.32301 lineto
+newpath -68.89061 -196.31157 moveto
+164.86269 -196.31157 lineto
+164.86269 -238.19458 lineto
+-68.89061 -238.19458 lineto
  closepath fill
  0 0 0 setrgbcolor
-newpath -68.89061 -164.81157 moveto
-164.86269 -164.81157 lineto
-164.86269 -237.32301 lineto
--68.89061 -237.32301 lineto
+newpath -68.89061 -196.31157 moveto
+164.86269 -196.31157 lineto
+164.86269 -238.19458 lineto
+-68.89061 -238.19458 lineto
  closepath stroke
-newpath -68.89061 -177.56615 moveto
-164.86269 -177.56615 lineto stroke
-newpath -68.89061 -212.69458 moveto
-164.86269 -212.69458 lineto stroke
-27.239 -174.56615 moveto
-(Lagerhaus) ptmr8r 9.96265 fshow
--64.89061 -187.69458 moveto
+newpath -68.89061 -209.06615 moveto
+164.86269 -209.06615 lineto stroke
+newpath -68.89061 -213.56615 moveto
+164.86269 -213.56615 lineto stroke
+4.2753 -206.06615 moveto
+(Lagerhaus\040::\040Geb\344ude) ptmr8r 9.96265 fshow
+-64.89061 -223.69458 moveto
 (+) ptmr8r 9.96265 fshow
--64.8906 -198.19458 moveto
+-64.8906 -234.19458 moveto
 (+) ptmr8r 9.96265 fshow
--64.8906 -208.69458 moveto
-(+) ptmr8r 9.96265 fshow
--64.89061 -222.82301 moveto
-(+) ptmr8r 9.96265 fshow
--64.8906 -233.32301 moveto
-(+) ptmr8r 9.96265 fshow
--53.27177 -188.07072 moveto
-(verbraucht\040:\040Ressourcen[]) ptmr8r 9.96265 fshow
--53.27177 -198.03775 moveto
-(produziert\040:\040Ressourcen[]) ptmr8r 9.96265 fshow
--53.27177 -208.53775 moveto
-(produktionsZeit\040:\040Zahl) ptmr8r 9.96265 fshow
--53.27177 -223.19916 moveto
+-53.27177 -224.07072 moveto
 (balance\(ressource\040:\040Ressource\)\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
--53.27177 -233.69916 moveto
+-53.27177 -234.57072 moveto
 (blanceEnth\344lt\(ressource\040:\040Ressource\)\040:\040Wahrheitswert) ptmr8r 9.96265 fshow
  0.7 0.7 0.7 setrgbcolor
-newpath -48.80736 -248.32301 moveto
-146.77943 -248.32301 lineto
-146.77943 -340.50204 lineto
--48.80736 -340.50204 lineto
+newpath -53.50969 -249.19458 moveto
+151.48177 -249.19458 lineto
+151.48177 -341.37361 lineto
+-53.50969 -341.37361 lineto
  closepath fill
  0.9 0.9 0.9 setrgbcolor
-newpath -49.80736 -247.32301 moveto
-145.77943 -247.32301 lineto
-145.77943 -339.50204 lineto
--49.80736 -339.50204 lineto
+newpath -54.50969 -248.19458 moveto
+150.48177 -248.19458 lineto
+150.48177 -340.37361 lineto
+-54.50969 -340.37361 lineto
  closepath fill
  0 0 0 setrgbcolor
-newpath -49.80736 -247.32301 moveto
-145.77943 -247.32301 lineto
-145.77943 -339.50204 lineto
--49.80736 -339.50204 lineto
+newpath -54.50969 -248.19458 moveto
+150.48177 -248.19458 lineto
+150.48177 -340.37361 lineto
+-54.50969 -340.37361 lineto
  closepath stroke
-newpath -49.80736 -260.29929 moveto
-145.77943 -260.29929 lineto stroke
-newpath -49.80736 -283.37361 moveto
-145.77943 -283.37361 lineto stroke
-32.76833 -257.07759 moveto
+newpath -54.50969 -261.17085 moveto
+150.48177 -261.17085 lineto stroke
+newpath -54.50969 -284.24518 moveto
+150.48177 -284.24518 lineto stroke
+32.76833 -257.94916 moveto
 (Ameise) ptmr8r 9.96265 fshow
--45.80736 -268.87361 moveto
+-50.50969 -269.74518 moveto
 (+) ptmr8r 9.96265 fshow
--45.80734 -279.37361 moveto
+-50.50967 -280.24518 moveto
 (+) ptmr8r 9.96265 fshow
--44.65672 -293.50204 moveto
+-49.35905 -294.37361 moveto
 (-) ptmr8r 9.96265 fshow
--44.65671 -304.00204 moveto
+-49.35904 -304.87361 moveto
 (-) ptmr8r 9.96265 fshow
--44.65671 -314.50204 moveto
+-49.35904 -315.37361 moveto
 (-) ptmr8r 9.96265 fshow
--44.65671 -325.00204 moveto
+-49.35904 -325.87361 moveto
 (-) ptmr8r 9.96265 fshow
--45.80736 -335.50204 moveto
+-50.50969 -336.37361 moveto
 (+) ptmr8r 9.96265 fshow
--34.18852 -270.80386 moveto
+-38.89085 -271.67543 moveto
 (momentanePosition\040:\040Knoten) ptmr8r 9.96265 fshow
--34.18852 -279.21678 moveto
+-38.89085 -280.08835 moveto
 (transportierteRessource\040:\040Ressource) ptmr8r 9.96265 fshow
--34.18852 -293.87819 moveto
+-38.89085 -294.74976 moveto
 (berrechneP\(kante\040:\040Kante\)\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
--34.18852 -303.84521 moveto
+-38.89085 -304.71678 moveto
 (berrechnep\(kante\040:\040Kante\)\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
--34.18852 -314.87819 moveto
-(effizienz\(kante\040:\040Kante\)\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
--34.18852 -325.37819 moveto
-(summeWahrscheinlichkeit\(\)\040:\040Dezimahlzahl) ptmr8r 9.96265 fshow
--34.18852 -335.87819 moveto
+-38.89085 -315.74976 moveto
+(effektivit\344t\(kante\040:\040Kante\)\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
+-38.89085 -326.24976 moveto
+(summeWahrscheinlichkeiten\(\)\040:\040Dezimahlzahl) ptmr8r 9.96265 fshow
+-38.89085 -336.74976 moveto
 (selektiereKante\(\)\040:\040Kante) ptmr8r 9.96265 fshow
  0.7 0.7 0.7 setrgbcolor
-newpath -12.82797 -350.50204 moveto
-110.80005 -350.50204 lineto
-110.80005 -486.54646 lineto
--12.82797 -486.54646 lineto
+newpath -12.82797 -351.37361 moveto
+110.80005 -351.37361 lineto
+110.80005 -487.41803 lineto
+-12.82797 -487.41803 lineto
  closepath fill
  0.9 0.9 0.9 setrgbcolor
-newpath -13.82797 -349.50204 moveto
-109.80005 -349.50204 lineto
-109.80005 -485.54646 lineto
--13.82797 -485.54646 lineto
+newpath -13.82797 -350.37361 moveto
+109.80005 -350.37361 lineto
+109.80005 -486.41803 lineto
+-13.82797 -486.41803 lineto
  closepath fill
  0 0 0 setrgbcolor
-newpath -13.82797 -349.50204 moveto
-109.80005 -349.50204 lineto
-109.80005 -485.54646 lineto
--13.82797 -485.54646 lineto
+newpath -13.82797 -350.37361 moveto
+109.80005 -350.37361 lineto
+109.80005 -486.41803 lineto
+-13.82797 -486.41803 lineto
  closepath stroke
-newpath -13.82797 -362.25662 moveto
-109.80005 -362.25662 lineto stroke
-newpath -13.82797 -450.41803 moveto
-109.80005 -450.41803 lineto stroke
-32.21036 -359.25662 moveto
+newpath -13.82797 -363.12819 moveto
+109.80005 -363.12819 lineto stroke
+newpath -13.82797 -451.2896 moveto
+109.80005 -451.2896 lineto stroke
+32.21036 -360.12819 moveto
 (Colonie) ptmr8r 9.96265 fshow
--9.82797 -372.91803 moveto
+-9.82797 -373.7896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -383.41803 moveto
+-9.82796 -384.2896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -393.91803 moveto
+-9.82796 -394.7896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -404.41803 moveto
+-9.82796 -405.2896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -414.91803 moveto
+-9.82796 -415.7896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -425.41803 moveto
+-9.82796 -426.2896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -435.91803 moveto
+-9.82796 -436.7896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -446.41803 moveto
+-9.82796 -447.2896 moveto
 (+) ptmr8r 9.96265 fshow
--9.82797 -460.54646 moveto
+-9.82797 -461.41803 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -471.04646 moveto
+-9.82796 -471.91803 moveto
 (+) ptmr8r 9.96265 fshow
--9.82796 -481.54646 moveto
+-9.82796 -482.41803 moveto
 (+) ptmr8r 9.96265 fshow
-1.79086 -372.7612 moveto
+1.79086 -373.63277 moveto
 (alpha\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
-1.79086 -385.34828 moveto
+1.79086 -386.21985 moveto
 (beta\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
-1.79086 -395.84828 moveto
+1.79086 -396.71985 moveto
 (theta\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
-1.79086 -406.34828 moveto
+1.79086 -407.21985 moveto
 (rho\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
-1.79086 -415.29417 moveto
+1.79086 -416.16574 moveto
 (Q\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
-1.79086 -425.79417 moveto
+1.79086 -426.66574 moveto
 (ameisen\040:\040Ameise[]) ptmr8r 9.96265 fshow
-1.79086 -435.7612 moveto
+1.79086 -436.63277 moveto
 (gegangeneWege\040:\040Kante[]) ptmr8r 9.96265 fshow
-1.79086 -446.79417 moveto
-(alleKnoten\040:\040Knote[]) ptmr8r 9.96265 fshow
-1.79086 -460.9226 moveto
+1.79086 -447.66574 moveto
+(alleKnoten\040:\040Knoten[]) ptmr8r 9.96265 fshow
+1.79086 -461.79417 moveto
 (verdunste\040\(\)\040:\040nichts) ptmr8r 9.96265 fshow
-1.79086 -471.4226 moveto
+1.79086 -472.29417 moveto
 (belohne\(\)\040:\040nichts) ptmr8r 9.96265 fshow
-1.79086 -481.38963 moveto
+1.79086 -482.2612 moveto
 (bewegeAlle\(\)\040:\040nichts) ptmr8r 9.96265 fshow
  0.7 0.7 0.7 setrgbcolor
-newpath -7.30853 -496.54646 moveto
-105.28061 -496.54646 lineto
-105.28061 -526.32805 lineto
--7.30853 -526.32805 lineto
+newpath -7.30853 -497.41803 moveto
+105.28061 -497.41803 lineto
+105.28061 -527.19962 lineto
+-7.30853 -527.19962 lineto
  closepath fill
  0.9 0.9 0.9 setrgbcolor
-newpath -8.30853 -495.54646 moveto
-104.28061 -495.54646 lineto
-104.28061 -525.32805 lineto
--8.30853 -525.32805 lineto
+newpath -8.30853 -496.41803 moveto
+104.28061 -496.41803 lineto
+104.28061 -526.19962 lineto
+-8.30853 -526.19962 lineto
  closepath fill
  0 0 0 setrgbcolor
-newpath -8.30853 -495.54646 moveto
-104.28061 -495.54646 lineto
-104.28061 -525.32805 lineto
--8.30853 -525.32805 lineto
+newpath -8.30853 -496.41803 moveto
+104.28061 -496.41803 lineto
+104.28061 -526.19962 lineto
+-8.30853 -526.19962 lineto
  closepath stroke
-newpath -8.30853 -508.25372 moveto
-104.28061 -508.25372 lineto stroke
-newpath -8.30853 -520.82805 moveto
-104.28061 -520.82805 lineto stroke
-27.51305 -505.03203 moveto
+newpath -8.30853 -509.12529 moveto
+104.28061 -509.12529 lineto stroke
+newpath -8.30853 -521.69962 moveto
+104.28061 -521.69962 lineto stroke
+27.51305 -505.9036 moveto
 (Ressource) ptmr8r 9.96265 fshow
--4.30853 -516.82805 moveto
+-4.30853 -517.69962 moveto
 (+) ptmr8r 9.96265 fshow
-7.31029 -518.7583 moveto
+7.31029 -519.62987 moveto
 (volumen\040:\040Dezimalzahl) ptmr8r 9.96265 fshow
 showpage
 %%EOF
