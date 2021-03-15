@@ -30,6 +30,8 @@ public class Colony {
     }
 
     public void update(){
+        //Reset list of walked pathes
+        walked.clear();
         //Ant moving
         for(Ant current : ants){
             current.move();
